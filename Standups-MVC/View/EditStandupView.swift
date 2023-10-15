@@ -31,6 +31,7 @@ struct EditStandupView: View {
                 }
             }
         }
+        .preference(key: TextFieldBinding.self, value: .init(id: "Title Field", text: $standup.title))
     }
 }
 

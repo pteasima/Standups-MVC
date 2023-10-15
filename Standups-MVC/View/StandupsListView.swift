@@ -5,6 +5,8 @@ struct StandupsListView: View {
     @Environment(\.modelContext) var modelContext
     @Query var standups: [Standup]
     @State private var newStandup: Standup?
+    
+    @State private var titleBinding: TextFieldBinding = .init(id: "nope", text: .constant(""))
     var body: some View {
         NavigationStack {
             List {
@@ -24,12 +26,16 @@ struct StandupsListView: View {
             }
             .sheet(item: $newStandup) { standup in
                 EditStandupView(standup: standup)
+                    .onPreferenceChange(TextFieldBinding.self) { value in
+                        titleBinding = value
+                    }
             }
         }
         .preference(key: StatePreference.self, value: .init(id: "standups", value: standups))
         .preference(key: ButtonAction.self, value: .init(id: "Add Button") {
             addStandup()
         })
+        .preference(key: TextFieldBinding.self, value: titleBinding)
     }
     
     private func addStandup() {

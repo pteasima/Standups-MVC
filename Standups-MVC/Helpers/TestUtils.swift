@@ -31,3 +31,17 @@ struct StatePreference: Equatable, PreferenceKey {
     }
     
 }
+
+struct TextFieldBinding: Equatable, PreferenceKey {
+    static func == (lhs: TextFieldBinding, rhs: TextFieldBinding) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    typealias ID = String
+    var id: ID
+    var text: Binding<String>
+    static var defaultValue: Self { .init(id: "nope", text: .constant("")) }
+    static func reduce(value: inout Self, nextValue: () -> Self) {
+        value = nextValue()
+    }
+}

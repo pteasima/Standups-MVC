@@ -12,6 +12,7 @@ final class StandupListTests: XCTestCase {
         struct TestView: View {
             @State private var standups: [Standup] = []
             @State private var addButtonAction = { }
+            @State private var titleBinding: Binding<String> = .constant("")
             
             var body: some View {
                 let modelContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
@@ -27,14 +28,21 @@ final class StandupListTests: XCTestCase {
                         
                         addButtonAction()
                         try! await Task.sleep(until: .now + .seconds(1), clock: .suspending)
+                        print("value", titleBinding.wrappedValue)
+                        titleBinding.wrappedValue = "hello"
+                        print("value", titleBinding.wrappedValue)
+                        try! await Task.sleep(until: .now + .seconds(1), clock: .suspending)
                         print(standups)
-                        XCTAssertEqual(standups.map(\.title).sorted(), ["", "Sample Standup"].sorted())
+                        XCTAssertEqual(standups.map(\.title).sorted(), ["hello", "Sample Standup"].sorted())
                     }
                     .onPreferenceChange(ButtonAction.self) { action in
                         addButtonAction = action.action
                     }
                     .onPreferenceChange(StatePreference.self) { value in
                         standups = value.value as! [Standup]
+                    }
+                    .onPreferenceChange(TextFieldBinding.self) { text in
+                        titleBinding = text.text
                     }
             }
         }
