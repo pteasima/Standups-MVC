@@ -45,3 +45,15 @@ struct TextFieldBinding: Equatable, PreferenceKey {
         value = nextValue()
     }
 }
+
+struct RowButtonActions: Equatable, PreferenceKey {
+    static func == (lhs: RowButtonActions, rhs: RowButtonActions) -> Bool {
+        Set(lhs.actions.keys) == Set(rhs.actions.keys)
+    }
+    
+    var actions: [AnyHashable: () -> Void] = [:]
+    static var defaultValue: Self { .init() }
+    static func reduce(value: inout Self, nextValue: () -> Self) {
+        value.actions = value.actions.merging(nextValue().actions) { $1 }
+    }
+}

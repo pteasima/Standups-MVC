@@ -18,6 +18,7 @@
 		7940E1D22AD95EE10036D710 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1D12AD95EE10036D710 /* SampleData.swift */; };
 		7940E1D42AD9607A0036D710 /* EditStandupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1D32AD9607A0036D710 /* EditStandupView.swift */; };
 		7940E1D72ADC115B0036D710 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1D62ADC115B0036D710 /* TestUtils.swift */; };
+		79D6B2E12ADC846D0018F4F8 /* View+SyncPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6B2E02ADC846D0018F4F8 /* View+SyncPreference.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		7940E1D12AD95EE10036D710 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		7940E1D32AD9607A0036D710 /* EditStandupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStandupView.swift; sourceTree = "<group>"; };
 		7940E1D62ADC115B0036D710 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
+		79D6B2E02ADC846D0018F4F8 /* View+SyncPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SyncPreference.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			children = (
 				7940E1C52AD9539F0036D710 /* Task+Sleep.swift */,
 				7940E1D62ADC115B0036D710 /* TestUtils.swift */,
+				79D6B2E02ADC846D0018F4F8 /* View+SyncPreference.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				7940E1C62AD9539F0036D710 /* Task+Sleep.swift in Sources */,
 				7940E1D72ADC115B0036D710 /* TestUtils.swift in Sources */,
 				7940E1CE2AD95DA80036D710 /* Standup.swift in Sources */,
+				79D6B2E12ADC846D0018F4F8 /* View+SyncPreference.swift in Sources */,
 				7940E1D42AD9607A0036D710 /* EditStandupView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
