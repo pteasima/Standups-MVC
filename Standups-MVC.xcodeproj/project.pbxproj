@@ -12,12 +12,12 @@
 		7940E1AB2AD94B8F0036D710 /* StandupsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1AA2AD94B8F0036D710 /* StandupsListView.swift */; };
 		7940E1AD2AD94B920036D710 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7940E1AC2AD94B920036D710 /* Assets.xcassets */; };
 		7940E1B02AD94B920036D710 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7940E1AF2AD94B920036D710 /* Preview Assets.xcassets */; };
-		7940E1BB2AD94B920036D710 /* Standups_MVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1BA2AD94B920036D710 /* Standups_MVCTests.swift */; };
+		7940E1BB2AD94B920036D710 /* StandupListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1BA2AD94B920036D710 /* StandupListTests.swift */; };
 		7940E1C62AD9539F0036D710 /* Task+Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1C52AD9539F0036D710 /* Task+Sleep.swift */; };
-		7940E1C92AD95D0C0036D710 /* StandupsListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1C82AD95D0C0036D710 /* StandupsListTests.swift */; };
 		7940E1CE2AD95DA80036D710 /* Standup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1CD2AD95DA80036D710 /* Standup.swift */; };
 		7940E1D22AD95EE10036D710 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1D12AD95EE10036D710 /* SampleData.swift */; };
 		7940E1D42AD9607A0036D710 /* EditStandupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1D32AD9607A0036D710 /* EditStandupView.swift */; };
+		7940E1D72ADC115B0036D710 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1D62ADC115B0036D710 /* TestUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,12 +39,12 @@
 		7940E1AF2AD94B920036D710 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7940E1B12AD94B920036D710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7940E1B62AD94B920036D710 /* Standups-MVCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Standups-MVCTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7940E1BA2AD94B920036D710 /* Standups_MVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standups_MVCTests.swift; sourceTree = "<group>"; };
+		7940E1BA2AD94B920036D710 /* StandupListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandupListTests.swift; sourceTree = "<group>"; };
 		7940E1C52AD9539F0036D710 /* Task+Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Sleep.swift"; sourceTree = "<group>"; };
-		7940E1C82AD95D0C0036D710 /* StandupsListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandupsListTests.swift; sourceTree = "<group>"; };
 		7940E1CD2AD95DA80036D710 /* Standup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standup.swift; sourceTree = "<group>"; };
 		7940E1D12AD95EE10036D710 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		7940E1D32AD9607A0036D710 /* EditStandupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStandupView.swift; sourceTree = "<group>"; };
+		7940E1D62ADC115B0036D710 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +88,6 @@
 		7940E1A32AD94B8F0036D710 /* Standups-MVC */ = {
 			isa = PBXGroup;
 			children = (
-				7940E1C72AD95CCD0036D710 /* TestCases */,
 				7940E1C42AD953930036D710 /* Helpers */,
 				7940E1CC2AD95D540036D710 /* Services */,
 				7940E1CA2AD95D440036D710 /* Model */,
@@ -120,7 +119,7 @@
 		7940E1B92AD94B920036D710 /* Standups-MVCTests */ = {
 			isa = PBXGroup;
 			children = (
-				7940E1BA2AD94B920036D710 /* Standups_MVCTests.swift */,
+				7940E1BA2AD94B920036D710 /* StandupListTests.swift */,
 			);
 			path = "Standups-MVCTests";
 			sourceTree = "<group>";
@@ -129,16 +128,9 @@
 			isa = PBXGroup;
 			children = (
 				7940E1C52AD9539F0036D710 /* Task+Sleep.swift */,
+				7940E1D62ADC115B0036D710 /* TestUtils.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		7940E1C72AD95CCD0036D710 /* TestCases */ = {
-			isa = PBXGroup;
-			children = (
-				7940E1C82AD95D0C0036D710 /* StandupsListTests.swift */,
-			);
-			path = TestCases;
 			sourceTree = "<group>";
 		};
 		7940E1CA2AD95D440036D710 /* Model */ = {
@@ -281,8 +273,8 @@
 				7940E1D22AD95EE10036D710 /* SampleData.swift in Sources */,
 				7940E1A92AD94B8F0036D710 /* Standups_MVCApp.swift in Sources */,
 				7940E1C62AD9539F0036D710 /* Task+Sleep.swift in Sources */,
+				7940E1D72ADC115B0036D710 /* TestUtils.swift in Sources */,
 				7940E1CE2AD95DA80036D710 /* Standup.swift in Sources */,
-				7940E1C92AD95D0C0036D710 /* StandupsListTests.swift in Sources */,
 				7940E1D42AD9607A0036D710 /* EditStandupView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,7 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7940E1BB2AD94B920036D710 /* Standups_MVCTests.swift in Sources */,
+				7940E1BB2AD94B920036D710 /* StandupListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

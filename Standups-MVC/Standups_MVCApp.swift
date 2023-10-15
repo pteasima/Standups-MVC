@@ -11,10 +11,8 @@ import SwiftUI
 struct Standups_MVCApp: App {
     var body: some Scene {
         WindowGroup {
-//            StandupsListView()
-//                .modelContainer(for: Standup.self)
-            
-            StandupListTests.TestAdd()
+            StandupsListView()
+                .modelContainer(for: Standup.self)
         }
     }
 }
