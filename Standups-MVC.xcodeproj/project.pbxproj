@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7940E1A72AD94B8F0036D710 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 7940E1A62AD94B8F0036D710 /* RealityKitContent */; };
 		7940E1A92AD94B8F0036D710 /* Standups_MVCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1A82AD94B8F0036D710 /* Standups_MVCApp.swift */; };
 		7940E1AB2AD94B8F0036D710 /* StandupsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1AA2AD94B8F0036D710 /* StandupsListView.swift */; };
 		7940E1AD2AD94B920036D710 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7940E1AC2AD94B920036D710 /* Assets.xcassets */; };
@@ -32,14 +31,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7940E1A12AD94B8F0036D710 /* Standups-MVC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Standups-MVC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7940E1A52AD94B8F0036D710 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
+		7940E1A12AD94B8F0036D710 /* Standups-MVC-xrOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Standups-MVC-xrOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7940E1A82AD94B8F0036D710 /* Standups_MVCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standups_MVCApp.swift; sourceTree = "<group>"; };
 		7940E1AA2AD94B8F0036D710 /* StandupsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandupsListView.swift; sourceTree = "<group>"; };
 		7940E1AC2AD94B920036D710 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7940E1AF2AD94B920036D710 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7940E1B12AD94B920036D710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7940E1B62AD94B920036D710 /* Standups-MVCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Standups-MVCTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7940E1B62AD94B920036D710 /* Standups-MVCTests-xrOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Standups-MVCTests-xrOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7940E1BA2AD94B920036D710 /* StandupListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandupListTests.swift; sourceTree = "<group>"; };
 		7940E1C52AD9539F0036D710 /* Task+Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Sleep.swift"; sourceTree = "<group>"; };
 		7940E1CD2AD95DA80036D710 /* Standup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standup.swift; sourceTree = "<group>"; };
@@ -54,7 +52,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7940E1A72AD94B8F0036D710 /* RealityKitContent in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,8 +68,8 @@
 		7940E1982AD94B8F0036D710 = {
 			isa = PBXGroup;
 			children = (
+				79D6B2E22ADD14A60018F4F8 /* Standups-MVC-xrOS */,
 				7940E1A32AD94B8F0036D710 /* Standups-MVC */,
-				7940E1A42AD94B8F0036D710 /* Packages */,
 				7940E1B92AD94B920036D710 /* Standups-MVCTests */,
 				7940E1A22AD94B8F0036D710 /* Products */,
 			);
@@ -81,8 +78,8 @@
 		7940E1A22AD94B8F0036D710 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7940E1A12AD94B8F0036D710 /* Standups-MVC.app */,
-				7940E1B62AD94B920036D710 /* Standups-MVCTests.xctest */,
+				7940E1A12AD94B8F0036D710 /* Standups-MVC-xrOS.app */,
+				7940E1B62AD94B920036D710 /* Standups-MVCTests-xrOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,18 +93,9 @@
 				7940E1CB2AD95D490036D710 /* View */,
 				7940E1A82AD94B8F0036D710 /* Standups_MVCApp.swift */,
 				7940E1AC2AD94B920036D710 /* Assets.xcassets */,
-				7940E1B12AD94B920036D710 /* Info.plist */,
 				7940E1AE2AD94B920036D710 /* Preview Content */,
 			);
 			path = "Standups-MVC";
-			sourceTree = "<group>";
-		};
-		7940E1A42AD94B8F0036D710 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				7940E1A52AD94B8F0036D710 /* RealityKitContent */,
-			);
-			path = Packages;
 			sourceTree = "<group>";
 		};
 		7940E1AE2AD94B920036D710 /* Preview Content */ = {
@@ -169,12 +157,20 @@
 			path = SampleData;
 			sourceTree = "<group>";
 		};
+		79D6B2E22ADD14A60018F4F8 /* Standups-MVC-xrOS */ = {
+			isa = PBXGroup;
+			children = (
+				7940E1B12AD94B920036D710 /* Info.plist */,
+			);
+			path = "Standups-MVC-xrOS";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7940E1A02AD94B8F0036D710 /* Standups-MVC */ = {
+		7940E1A02AD94B8F0036D710 /* Standups-MVC-xrOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7940E1BE2AD94B920036D710 /* Build configuration list for PBXNativeTarget "Standups-MVC" */;
+			buildConfigurationList = 7940E1BE2AD94B920036D710 /* Build configuration list for PBXNativeTarget "Standups-MVC-xrOS" */;
 			buildPhases = (
 				7940E19D2AD94B8F0036D710 /* Sources */,
 				7940E19E2AD94B8F0036D710 /* Frameworks */,
@@ -184,17 +180,16 @@
 			);
 			dependencies = (
 			);
-			name = "Standups-MVC";
+			name = "Standups-MVC-xrOS";
 			packageProductDependencies = (
-				7940E1A62AD94B8F0036D710 /* RealityKitContent */,
 			);
 			productName = "Standups-MVC";
-			productReference = 7940E1A12AD94B8F0036D710 /* Standups-MVC.app */;
+			productReference = 7940E1A12AD94B8F0036D710 /* Standups-MVC-xrOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7940E1B52AD94B920036D710 /* Standups-MVCTests */ = {
+		7940E1B52AD94B920036D710 /* Standups-MVCTests-xrOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7940E1C12AD94B920036D710 /* Build configuration list for PBXNativeTarget "Standups-MVCTests" */;
+			buildConfigurationList = 7940E1C12AD94B920036D710 /* Build configuration list for PBXNativeTarget "Standups-MVCTests-xrOS" */;
 			buildPhases = (
 				7940E1B22AD94B920036D710 /* Sources */,
 				7940E1B32AD94B920036D710 /* Frameworks */,
@@ -205,9 +200,9 @@
 			dependencies = (
 				7940E1B82AD94B920036D710 /* PBXTargetDependency */,
 			);
-			name = "Standups-MVCTests";
+			name = "Standups-MVCTests-xrOS";
 			productName = "Standups-MVCTests";
-			productReference = 7940E1B62AD94B920036D710 /* Standups-MVCTests.xctest */;
+			productReference = 7940E1B62AD94B920036D710 /* Standups-MVCTests-xrOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -242,8 +237,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7940E1A02AD94B8F0036D710 /* Standups-MVC */,
-				7940E1B52AD94B920036D710 /* Standups-MVCTests */,
+				7940E1A02AD94B8F0036D710 /* Standups-MVC-xrOS */,
+				7940E1B52AD94B920036D710 /* Standups-MVCTests-xrOS */,
 			);
 		};
 /* End PBXProject section */
@@ -296,7 +291,7 @@
 /* Begin PBXTargetDependency section */
 		7940E1B82AD94B920036D710 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7940E1A02AD94B8F0036D710 /* Standups-MVC */;
+			target = 7940E1A02AD94B8F0036D710 /* Standups-MVC-xrOS */;
 			targetProxy = 7940E1B72AD94B920036D710 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -437,7 +432,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "cz.pteasima.Standups-MVC";
+				PRODUCT_BUNDLE_IDENTIFIER = "cz.pteasima.Standups-MVC-xrOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -462,7 +457,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "cz.pteasima.Standups-MVC";
+				PRODUCT_BUNDLE_IDENTIFIER = "cz.pteasima.Standups-MVC-xrOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -486,7 +481,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Standups-MVC.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Standups-MVC";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Standups-MVC-xrOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Standups-MVC-xrOS";
 				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Debug;
@@ -506,7 +501,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Standups-MVC.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Standups-MVC";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Standups-MVC-xrOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Standups-MVC-xrOS";
 				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Release;
@@ -523,7 +518,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7940E1BE2AD94B920036D710 /* Build configuration list for PBXNativeTarget "Standups-MVC" */ = {
+		7940E1BE2AD94B920036D710 /* Build configuration list for PBXNativeTarget "Standups-MVC-xrOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7940E1BF2AD94B920036D710 /* Debug */,
@@ -532,7 +527,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7940E1C12AD94B920036D710 /* Build configuration list for PBXNativeTarget "Standups-MVCTests" */ = {
+		7940E1C12AD94B920036D710 /* Build configuration list for PBXNativeTarget "Standups-MVCTests-xrOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7940E1C22AD94B920036D710 /* Debug */,
@@ -542,13 +537,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		7940E1A62AD94B8F0036D710 /* RealityKitContent */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RealityKitContent;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7940E1992AD94B8F0036D710 /* Project object */;
 }

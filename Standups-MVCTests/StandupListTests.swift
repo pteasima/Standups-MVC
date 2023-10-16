@@ -1,5 +1,5 @@
 import XCTest
-@testable import Standups_MVC
+@testable import Standups_MVC_xrOS
 import SwiftUI
 import SwiftData
 
