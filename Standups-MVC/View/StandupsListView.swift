@@ -9,41 +9,38 @@ struct StandupsListView: View {
     @State private var detail: Standup?
     
     var body: some View {
-        withChildPreference(key: RowButtonActions.self) { rowButtonActionsPipe in
-            withChildPreference(key: TextFieldBinding.self) { textFieldBindingPipe in
-                NavigationStack {
-                    List {
-                        ForEach(standups) { standup in
-                            RowView(standup: standup)
-                                .transformPreference(RowButtonActions.self) { value in
-                                    let selectStandupAction = value.actions[\RowView.selectStandup]
-                                    value.actions[\RowView.selectStandup] = nil
-                                    let id = [AnyHashable(standup.id), \RowView.selectStandup]
-                                    value.actions[id] = selectStandupAction
-                                }
-                                .syncPreference(using: rowButtonActionsPipe)
-                        }
-                    }
-                    .navigationTitle("Standups")
-                    .toolbar {
-                        ToolbarItem(placement: .automatic) {
-                            Button {
-                                addStandup()
-                            } label: {
-                                Text("+")
+        withChildPreference(key: TextFieldBinding.self) { textFieldBindingPipe in
+            NavigationStack {
+                List {
+                    ForEach(standups) { standup in
+                        RowView(standup: standup)
+                            .transformPreference(RowButtonActions.self) { value in
+                                let selectStandupAction = value.actions[\RowView.selectStandup]
+                                value.actions[\RowView.selectStandup] = nil
+                                let id = [AnyHashable(standup.id), \RowView.selectStandup]
+                                value.actions[id] = selectStandupAction
                             }
-                        }
-                    }
-                    .sheet(item: $newStandup) { standup in
-                        EditStandupView(standup: standup)
-                            .syncPreference(using: textFieldBindingPipe)
                     }
                 }
-                .preference(key: StatePreference.self, value: .init(id: "standups", value: standups))
-                .preference(key: ButtonAction.self, value: .init(id: "Add Button") {
-                    addStandup()
-                })
+                .navigationTitle("Standups")
+                .toolbar {
+                    ToolbarItem(placement: .automatic) {
+                        Button {
+                            addStandup()
+                        } label: {
+                            Text("+")
+                        }
+                    }
+                }
+                .sheet(item: $newStandup) { standup in
+                    EditStandupView(standup: standup)
+                        .syncPreference(using: textFieldBindingPipe)
+                }
             }
+            .preference(key: StatePreference.self, value: .init(id: "standups", value: standups))
+            .preference(key: ButtonAction.self, value: .init(id: "Add Button") {
+                addStandup()
+            })
         }
     }
     

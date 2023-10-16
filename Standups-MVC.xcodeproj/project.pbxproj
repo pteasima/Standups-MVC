@@ -18,6 +18,8 @@
 		7940E1D42AD9607A0036D710 /* EditStandupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1D32AD9607A0036D710 /* EditStandupView.swift */; };
 		7940E1D72ADC115B0036D710 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1D62ADC115B0036D710 /* TestUtils.swift */; };
 		796874002ADD1D9B0066F95E /* StandupListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1BA2AD94B920036D710 /* StandupListTests.swift */; };
+		796874032ADD5D6C0066F95E /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796874022ADD5D6C0066F95E /* Playground.swift */; };
+		796874042ADD5D700066F95E /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796874022ADD5D6C0066F95E /* Playground.swift */; };
 		79D6B2E12ADC846D0018F4F8 /* View+SyncPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6B2E02ADC846D0018F4F8 /* View+SyncPreference.swift */; };
 		79D6B2F62ADD18FE0018F4F8 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1D62ADC115B0036D710 /* TestUtils.swift */; };
 		79D6B2F72ADD18FF0018F4F8 /* View+SyncPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6B2E02ADC846D0018F4F8 /* View+SyncPreference.swift */; };
@@ -61,6 +63,7 @@
 		7940E1D32AD9607A0036D710 /* EditStandupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStandupView.swift; sourceTree = "<group>"; };
 		7940E1D62ADC115B0036D710 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		796873F72ADD1D4B0066F95E /* Standups-MVC-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Standups-MVC-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		796874022ADD5D6C0066F95E /* Playground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playground.swift; sourceTree = "<group>"; };
 		79D6B2E02ADC846D0018F4F8 /* View+SyncPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SyncPreference.swift"; sourceTree = "<group>"; };
 		79D6B2E72ADD189E0018F4F8 /* Standups-MVC-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Standups-MVC-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79D6B2F52ADD18D10018F4F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 		7940E1A32AD94B8F0036D710 /* Standups-MVC */ = {
 			isa = PBXGroup;
 			children = (
+				796874012ADD5D5E0066F95E /* Playground */,
 				7940E1C42AD953930036D710 /* Helpers */,
 				7940E1CC2AD95D540036D710 /* Services */,
 				7940E1CA2AD95D440036D710 /* Model */,
@@ -191,6 +195,14 @@
 				7940E1D12AD95EE10036D710 /* SampleData.swift */,
 			);
 			path = SampleData;
+			sourceTree = "<group>";
+		};
+		796874012ADD5D5E0066F95E /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				796874022ADD5D6C0066F95E /* Playground.swift */,
+			);
+			path = Playground;
 			sourceTree = "<group>";
 		};
 		79D6B2E22ADD14A60018F4F8 /* Standups-MVC-xrOS */ = {
@@ -371,6 +383,7 @@
 			files = (
 				7940E1AB2AD94B8F0036D710 /* StandupsListView.swift in Sources */,
 				7940E1D22AD95EE10036D710 /* SampleData.swift in Sources */,
+				796874032ADD5D6C0066F95E /* Playground.swift in Sources */,
 				7940E1A92AD94B8F0036D710 /* Standups_MVCApp.swift in Sources */,
 				7940E1C62AD9539F0036D710 /* Task+Sleep.swift in Sources */,
 				7940E1D72ADC115B0036D710 /* TestUtils.swift in Sources */,
@@ -402,6 +415,7 @@
 			files = (
 				79D6B2FD2ADD19110018F4F8 /* Standups_MVCApp.swift in Sources */,
 				79D6B2FB2ADD190B0018F4F8 /* StandupsListView.swift in Sources */,
+				796874042ADD5D700066F95E /* Playground.swift in Sources */,
 				79D6B2F72ADD18FF0018F4F8 /* View+SyncPreference.swift in Sources */,
 				79D6B2F62ADD18FE0018F4F8 /* TestUtils.swift in Sources */,
 				79D6B2F82ADD18FF0018F4F8 /* Task+Sleep.swift in Sources */,

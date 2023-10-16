@@ -11,18 +11,21 @@ import SwiftData
 
 final class StandupListTests: XCTestCase {
     
-    var window = UIWindow(frame: CGRect(origin: .zero, size: .init(width: 500, height: 500)))
+    var window: UIWindow {
+        (UIApplication.shared.connectedScenes.first as! UIWindowScene).windows.first!
+    }
     
     @MainActor
     func testAdd() async throws {
+        let modelContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
+        modelContainer.mainContext.insert(Standup.sample)
         struct TestView: View {
+            var modelContainer: ModelContainer
             @State private var standups: [Standup] = []
             @State private var addButtonAction = { }
             @State private var titleBinding: Binding<String> = .constant("")
             
             var body: some View {
-                let modelContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
-                modelContainer.mainContext.insert(Standup.sample)
                 return StandupsListView()
                     .modelContainer(modelContainer)
                     .task {
@@ -52,10 +55,8 @@ final class StandupListTests: XCTestCase {
                     }
             }
         }
-        
-        
-        
-        let v = TestView()
+
+        let v = TestView(modelContainer: modelContainer)
         let host = UIHostingController(rootView: v)
         window.rootViewController = host
         window.makeKeyAndVisible()
