@@ -1,5 +1,11 @@
 import XCTest
+
+#if os(xrOS)
 @testable import Standups_MVC_xrOS
+#elseif os(iOS)
+@testable import Standups_MVC_iOS
+#endif
+
 import SwiftUI
 import SwiftData
 
