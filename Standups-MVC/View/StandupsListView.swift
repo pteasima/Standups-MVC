@@ -13,8 +13,21 @@ struct StandupsListView: View {
                 List {
                     ForEach(standups) { standup in
                         NavigationLink(value: standup) {
+                          VStack(alignment: .leading, spacing: 20) {
                             Text(standup.title)
+                              .font(.headline)
+                            HStack {
+                              Label(standup.attendees.count.formatted(), systemImage: "person.3")
+                              
+                              Spacer()
+                              Label(standup.duration.formatted(), systemImage: "timer")
+                                .labelStyle(.trailingIcon)
+                            }
+                            .font(.caption)
+                          }
                         }
+                        .foregroundColor(standup.theme.accentColor)
+                        .listRowBackground(standup.theme.mainColor)
                     }
                 }
                 .navigationTitle("Standups")
