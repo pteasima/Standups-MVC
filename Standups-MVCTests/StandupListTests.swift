@@ -10,96 +10,110 @@ import SwiftUI
 import SwiftData
 
 final class StandupListTests: XCTestCase {
-    
-    var window: UIWindow {
-        (UIApplication.shared.connectedScenes.first as! UIWindowScene).windows.first!
-    }
-    
-    @MainActor
-    func testAdd() async throws {
-        let modelContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
-        modelContainer.mainContext.insert(Standup.sample)
-        struct TestView: View {
-            var modelContainer: ModelContainer
-            @State private var standups: [Standup] = []
-            @State private var addButtonAction = { }
-            @State private var titleBinding: Binding<String> = .constant("")
-            
-            var body: some View {
-                return StandupsListView()
-                    .modelContainer(modelContainer)
-                    .task {
-                        // test
-                        try! await Task.sleep()
-                        try! await Task.sleep()
-                        
-                        XCTAssertEqual(standups.map(\.title), ["Sample Standup"])
-                        
-                        addButtonAction()
-                        try! await Task.sleep(until: .now + .seconds(1), clock: .suspending)
-                        print("value", titleBinding.wrappedValue)
-                        titleBinding.wrappedValue = "hello"
-                        print("value", titleBinding.wrappedValue)
-                        try! await Task.sleep(until: .now + .seconds(1), clock: .suspending)
-                        print(standups)
-                        XCTAssertEqual(standups.map(\.title).sorted(), ["hello", "Sample Standup"].sorted())
-                    }
-                    .onPreferenceChange(ButtonAction.self) { action in
-                        addButtonAction = action.action
-                    }
-                    .onPreferenceChange(StatePreference.self) { value in
-                        standups = value.value as! [Standup]
-                    }
-                    .onPreferenceChange(TextFieldBinding.self) { text in
-                        titleBinding = text.text
-                    }
-            }
-        }
+  
+  var window: UIWindow {
+    (UIApplication.shared.connectedScenes.first as! UIWindowScene).windows.first!
+  }
+  
+  @MainActor
+  func testAdd() async throws {
+    let modelContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
+    modelContainer.mainContext.insert(Standup.sample)
+    struct TestView: View {
+      var modelContainer: ModelContainer
+      @State private var standups: [Standup] = []
+      @State private var addButtonAction = { }
+      @State private var titleBinding: Binding<String> = .constant("")
+      
+      var body: some View {
+        return StandupsListView()
+          .modelContainer(modelContainer)
+          .task {
+            // test
+            try! await Task.sleep()
+            try! await Task.sleep()
 
-        let v = TestView(modelContainer: modelContainer)
-        let host = UIHostingController(rootView: v)
-        window.rootViewController = host
-        window.makeKeyAndVisible()
-        
-        try await Task.sleep(until: .now + .seconds(3))
-    }
-   
-    
-    @MainActor
-    func testSelectRow() async throws {
-        struct TestView: View {
-            @State private var standups: [Standup] = []
-            @State private var rowActions: [AnyHashable: () -> Void] = [:]
+            XCTAssertEqual(standups.map(\.title), ["Sample Standup"])
             
-            var body: some View {
-                let modelContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
-                [Standup.sample, Standup.sample].forEach(modelContainer.mainContext.insert)
-                return StandupsListView()
-                    .modelContainer(modelContainer)
-                    .task {
-                        // test
-                        try! await Task.sleep()
-                        try! await Task.sleep()
-                        
-                        rowActions[[AnyHashable(standups[1].id), \RowView.selectStandup]]?()
-                        XCTAssertEqual(selectedStandup, standups[1].id)
-                    }
-                    .onPreferenceChange(StatePreference.self) { value in
-                        standups = value.value as! [Standup]
-                    }
-                    .onPreferenceChange(RowButtonActions.self) { actions in
-                        rowActions = actions.actions
-                    }
-            }
-        }
-        
-        
-        
-        let v = TestView()
-        let host = UIHostingController(rootView: v)
-        window.rootViewController = host
-        window.makeKeyAndVisible()
-        
-        try await Task.sleep(until: .now + .seconds(3))
+            addButtonAction()
+            try! await Task.sleep(until: .now + .seconds(1), clock: .suspending)
+            print("value", titleBinding.wrappedValue)
+            titleBinding.wrappedValue = "hello"
+            print("value", titleBinding.wrappedValue)
+            try! await Task.sleep(until: .now + .seconds(1), clock: .suspending)
+            print(standups)
+            XCTAssertEqual(standups.map(\.title).sorted(), ["hello", "Sample Standup"].sorted())
+          }
+          .onPreferenceChange(ButtonAction.self) { action in
+            addButtonAction = action.actions["Add"] ?? { }
+          }
+          .onPreferenceChange(StatePreference.self) { value in
+            standups = value.value as! [Standup]
+          }
+          .onPreferenceChange(TextFieldBinding.self) { text in
+            titleBinding = text.text
+          }
+      }
     }
+    
+    let v = TestView(modelContainer: modelContainer)
+    let host = UIHostingController(rootView: v)
+    window.rootViewController = host
+    window.makeKeyAndVisible()
+    
+    try await Task.sleep(until: .now + .seconds(3))
+  }
+  
+  
+  @MainActor
+  func testEdit() async throws {
+    struct TestView: View {
+      @State private var standups: [Standup] = []
+      @State private var path: Binding<AnyHashable> = .constant("nope")
+      @State private var editButtonAction: () -> Void = { }
+      @State private var titleBinding: Binding<String> = .constant("")
+      
+      var body: some View {
+        let modelContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
+        [Standup.sample, Standup.sample].forEach(modelContainer.mainContext.insert)
+        return StandupsListView()
+          .modelContainer(modelContainer)
+          .task {
+            // test
+            try! await Task.sleep()
+            try! await Task.sleep()
+            
+            XCTAssertEqual([Standup](), path.wrappedValue)
+            path.wrappedValue = [standups[1]]
+            try! await Task.sleep()
+            editButtonAction()
+            try! await Task.sleep()
+            titleBinding.wrappedValue = "hey"
+            try! await Task.sleep()
+            XCTAssertEqual(standups[1].title, "hey")
+            
+          }
+          .onPreferenceChange(StatePreference.self) { value in
+            standups = value.value as! [Standup]
+          }
+          .onPreferenceChange(StateBindingPreference.self, perform: {
+            path = $0.value
+          })
+          .onPreferenceChange(ButtonAction.self, perform: { value in
+            print(value.actions)
+            editButtonAction = value.actions["Edit"] ?? {}
+          })
+          .onPreferenceChange(TextFieldBinding.self) { text in
+            titleBinding = text.text
+          }
+      }
+    }
+    
+    let v = TestView()
+    let host = UIHostingController(rootView: v)
+    window.rootViewController = host
+    window.makeKeyAndVisible()
+    
+    try await Task.sleep(until: .now + .seconds(3))
+  }
 }

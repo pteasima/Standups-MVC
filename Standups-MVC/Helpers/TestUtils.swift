@@ -3,20 +3,14 @@ import SwiftUI
 
 struct ButtonAction: Equatable, PreferenceKey {
     static func == (lhs: ButtonAction, rhs: ButtonAction) -> Bool {
-        lhs.id == rhs.id
+        Set(lhs.actions.keys) == Set(rhs.actions.keys)
     }
-    
-    typealias ID = String
-    var id: ID
-    var action: () -> Void = {}
-    static var defaultValue: Self { .init(id: "nope") }
+
+    var actions: [AnyHashable: () -> Void] = [:]
+    static var defaultValue: Self { .init() }
     static func reduce(value: inout Self, nextValue: () -> Self) {
-        let v = value
-        let n = nextValue()
-        value = .init(id: v.id + n.id) { //TODO: use a dictionary of multiple actions
-            v.action()
-            n.action()
-        }
+      //TODO: maybe this is still buggy?
+        value.actions = value.actions.merging(nextValue().actions) { $1 }
     }
 }
 
@@ -46,14 +40,21 @@ struct TextFieldBinding: Equatable, PreferenceKey {
     }
 }
 
-struct RowButtonActions: Equatable, PreferenceKey {
-    static func == (lhs: RowButtonActions, rhs: RowButtonActions) -> Bool {
-        Set(lhs.actions.keys) == Set(rhs.actions.keys)
+struct StateBindingPreference: Equatable, PreferenceKey {
+    static func == (lhs: StateBindingPreference, rhs: StateBindingPreference) -> Bool {
+        lhs.id == rhs.id
     }
     
-    var actions: [AnyHashable: () -> Void] = [:]
-    static var defaultValue: Self { .init() }
-    static func reduce(value: inout Self, nextValue: () -> Self) {
-        value.actions = value.actions.merging(nextValue().actions) { $1 }
+    typealias ID = AnyHashable
+    var id: ID
+    var value: Binding<AnyHashable>
+    static var defaultValue: Self = .init(id: "nope", value: .constant("stupid"))
+    
+    static func reduce(value: inout StateBindingPreference, nextValue: () -> StateBindingPreference) {
+        value = nextValue()
     }
+    
+    
 }
+
+

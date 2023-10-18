@@ -22,9 +22,11 @@ fileprivate struct SyncPreferenceView<Key: PreferenceKey, Content: View>: View w
     @State private var value: Key.Value = Key.defaultValue
     @ViewBuilder var content: (PreferenceSyncPipe<Key>) -> Content
     var body: some View {
-        content(.init { nextValue in
-            Key.reduce(value: &value) { nextValue } // We use Key.reduce here to allow using the same pipe on multiple children, just like the built-in mechanism.
-        })
-            .preference(key: Key.self, value: value)
+      let set = { nextValue in
+        Key.reduce(value: &value) { nextValue } // We use Key.reduce here to allow using the same pipe on multiple children, just like the built-in mechanism.
+    }
+      return content(.init(set: set))
+        .onPreferenceChange(Key.self, perform: set) // Also merge with preferences coming from content, don't override them. Idk if this will preserve the order correctly, but should be good enough if reduce doesn't care about order.
+        .preference(key: Key.self, value: value)
     }
 }

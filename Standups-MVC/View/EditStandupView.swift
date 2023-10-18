@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct EditStandupView: View {
     @Environment(\.dismiss) private var dismiss
@@ -36,5 +37,9 @@ struct EditStandupView: View {
 }
 
 #Preview {
-    EditStandupView(standup: .sample)
+    let modelContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
+    let standup = Standup.sample
+    modelContainer.mainContext.insert(standup)
+    return EditStandupView(standup: standup)
+        .modelContainer(modelContainer)
 }

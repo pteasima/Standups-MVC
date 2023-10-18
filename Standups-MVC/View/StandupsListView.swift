@@ -6,20 +6,15 @@ struct StandupsListView: View {
     @Query var standups: [Standup]
     @State private var newStandup: Standup?
     
-    @State private var detail: Standup?
-    
+    @State var path: [Standup] = []
     var body: some View {
         withChildPreference(key: TextFieldBinding.self) { textFieldBindingPipe in
-            NavigationStack {
+            NavigationStack(path: $path) {
                 List {
                     ForEach(standups) { standup in
-                        RowView(standup: standup)
-                            .transformPreference(RowButtonActions.self) { value in
-                                let selectStandupAction = value.actions[\RowView.selectStandup]
-                                value.actions[\RowView.selectStandup] = nil
-                                let id = [AnyHashable(standup.id), \RowView.selectStandup]
-                                value.actions[id] = selectStandupAction
-                            }
+                        NavigationLink(value: standup) {
+                            Text(standup.title)
+                        }
                     }
                 }
                 .navigationTitle("Standups")
@@ -30,17 +25,28 @@ struct StandupsListView: View {
                         } label: {
                             Text("+")
                         }
+                        .preference(key: ButtonAction.self, value: .init(actions: ["Add" : {
+                          addStandup()
+                        }]))
                     }
                 }
                 .sheet(item: $newStandup) { standup in
                     EditStandupView(standup: standup)
                         .syncPreference(using: textFieldBindingPipe)
                 }
+                .navigationDestination(for: Standup.self) { standup in
+                    StandupDetailView(standup: standup)
+                }
             }
             .preference(key: StatePreference.self, value: .init(id: "standups", value: standups))
-            .preference(key: ButtonAction.self, value: .init(id: "Add Button") {
-                addStandup()
-            })
+            .preference(key: StateBindingPreference.self, value: .init(id: \Self.path, value: Binding {
+                path
+            } set: { (value: AnyHashable) in
+                path = value as! [Standup]
+            }))
+            .onChange(of: path) {
+                print("path", $0, $1)
+            }
         }
     }
     
@@ -57,25 +63,3 @@ struct StandupsListView: View {
     return StandupsListView()
         .modelContainer(modelContainer)
 }
-
-
-struct RowView: View {
-    var standup: Standup
-    var body: some View {
-        Button {
-            selectStandup()
-//            detail = standup
-        } label: {
-            Text(standup.title)
-        }
-        .preference(key: RowButtonActions.self, value: .init(actions: [\Self.selectStandup : selectStandup]))
-    }
-    
-    var selectStandup: () -> Void {
-        {
-            selectedStandup = standup.id
-        }
-    }
-}
-
-var selectedStandup: Standup.ID?

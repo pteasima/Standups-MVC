@@ -17,6 +17,8 @@
 		7940E1D22AD95EE10036D710 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1D12AD95EE10036D710 /* SampleData.swift */; };
 		7940E1D42AD9607A0036D710 /* EditStandupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1D32AD9607A0036D710 /* EditStandupView.swift */; };
 		7940E1D72ADC115B0036D710 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1D62ADC115B0036D710 /* TestUtils.swift */; };
+		79489E142AE0097D0040C708 /* StandupDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79489E132AE0097D0040C708 /* StandupDetailView.swift */; };
+		79489E152AE0097D0040C708 /* StandupDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79489E132AE0097D0040C708 /* StandupDetailView.swift */; };
 		796874002ADD1D9B0066F95E /* StandupListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1BA2AD94B920036D710 /* StandupListTests.swift */; };
 		796874032ADD5D6C0066F95E /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796874022ADD5D6C0066F95E /* Playground.swift */; };
 		796874042ADD5D700066F95E /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796874022ADD5D6C0066F95E /* Playground.swift */; };
@@ -62,6 +64,8 @@
 		7940E1D12AD95EE10036D710 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		7940E1D32AD9607A0036D710 /* EditStandupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStandupView.swift; sourceTree = "<group>"; };
 		7940E1D62ADC115B0036D710 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
+		79489E132AE0097D0040C708 /* StandupDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandupDetailView.swift; sourceTree = "<group>"; };
+		79489E192AE0162E0040C708 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		796873F72ADD1D4B0066F95E /* Standups-MVC-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Standups-MVC-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		796874022ADD5D6C0066F95E /* Playground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playground.swift; sourceTree = "<group>"; };
 		79D6B2E02ADC846D0018F4F8 /* View+SyncPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SyncPreference.swift"; sourceTree = "<group>"; };
@@ -104,13 +108,16 @@
 		7940E1982AD94B8F0036D710 = {
 			isa = PBXGroup;
 			children = (
+				79489E192AE0162E0040C708 /* README.md */,
 				79D6B2E22ADD14A60018F4F8 /* Standups-MVC-xrOS */,
 				79D6B2E82ADD189E0018F4F8 /* Standups-MVC-iOS */,
 				7940E1A32AD94B8F0036D710 /* Standups-MVC */,
 				7940E1B92AD94B920036D710 /* Standups-MVCTests */,
 				7940E1A22AD94B8F0036D710 /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		7940E1A22AD94B8F0036D710 /* Products */ = {
 			isa = PBXGroup;
@@ -178,6 +185,7 @@
 			children = (
 				7940E1AA2AD94B8F0036D710 /* StandupsListView.swift */,
 				7940E1D32AD9607A0036D710 /* EditStandupView.swift */,
+				79489E132AE0097D0040C708 /* StandupDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -388,6 +396,7 @@
 				7940E1C62AD9539F0036D710 /* Task+Sleep.swift in Sources */,
 				7940E1D72ADC115B0036D710 /* TestUtils.swift in Sources */,
 				7940E1CE2AD95DA80036D710 /* Standup.swift in Sources */,
+				79489E142AE0097D0040C708 /* StandupDetailView.swift in Sources */,
 				79D6B2E12ADC846D0018F4F8 /* View+SyncPreference.swift in Sources */,
 				7940E1D42AD9607A0036D710 /* EditStandupView.swift in Sources */,
 			);
@@ -420,6 +429,7 @@
 				79D6B2F62ADD18FE0018F4F8 /* TestUtils.swift in Sources */,
 				79D6B2F82ADD18FF0018F4F8 /* Task+Sleep.swift in Sources */,
 				79D6B2FA2ADD19050018F4F8 /* Standup.swift in Sources */,
+				79489E152AE0097D0040C708 /* StandupDetailView.swift in Sources */,
 				79D6B2F92ADD19050018F4F8 /* SampleData.swift in Sources */,
 				79D6B2FC2ADD190B0018F4F8 /* EditStandupView.swift in Sources */,
 			);
