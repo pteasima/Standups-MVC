@@ -14,9 +14,8 @@ struct Standups_MVCApp: App {
         WindowGroup {
 //            Playground()
 //                .modelContainer(for: AModel.self, inMemory: true)
-            Text("app")
-//            StandupsListView()
-//                .modelContainer(for: Standup.self, inMemory: true)
+            StandupsListView()
+                .modelContainer(for: Standup.self, inMemory: true)
 //            TestView(modelContainer: modelContainer)
         }
     }

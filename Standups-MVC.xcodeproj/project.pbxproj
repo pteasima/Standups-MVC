@@ -19,6 +19,12 @@
 		7940E1D72ADC115B0036D710 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1D62ADC115B0036D710 /* TestUtils.swift */; };
 		79489E142AE0097D0040C708 /* StandupDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79489E132AE0097D0040C708 /* StandupDetailView.swift */; };
 		79489E152AE0097D0040C708 /* StandupDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79489E132AE0097D0040C708 /* StandupDetailView.swift */; };
+		79489E1B2AE036D00040C708 /* Attendee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79489E1A2AE036D00040C708 /* Attendee.swift */; };
+		79489E1C2AE036D00040C708 /* Attendee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79489E1A2AE036D00040C708 /* Attendee.swift */; };
+		79489E1E2AE042C00040C708 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79489E1D2AE042C00040C708 /* Theme.swift */; };
+		79489E1F2AE042C00040C708 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79489E1D2AE042C00040C708 /* Theme.swift */; };
+		79489E222AE043F40040C708 /* iOSIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79489E212AE043F40040C708 /* iOSIcon.xcassets */; };
+		79489E3D2AE044920040C708 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7940E1AC2AD94B920036D710 /* Assets.xcassets */; };
 		796874002ADD1D9B0066F95E /* StandupListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1BA2AD94B920036D710 /* StandupListTests.swift */; };
 		796874032ADD5D6C0066F95E /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796874022ADD5D6C0066F95E /* Playground.swift */; };
 		796874042ADD5D700066F95E /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796874022ADD5D6C0066F95E /* Playground.swift */; };
@@ -66,6 +72,9 @@
 		7940E1D62ADC115B0036D710 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		79489E132AE0097D0040C708 /* StandupDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandupDetailView.swift; sourceTree = "<group>"; };
 		79489E192AE0162E0040C708 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		79489E1A2AE036D00040C708 /* Attendee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attendee.swift; sourceTree = "<group>"; };
+		79489E1D2AE042C00040C708 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		79489E212AE043F40040C708 /* iOSIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = iOSIcon.xcassets; sourceTree = "<group>"; };
 		796873F72ADD1D4B0066F95E /* Standups-MVC-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Standups-MVC-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		796874022ADD5D6C0066F95E /* Playground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playground.swift; sourceTree = "<group>"; };
 		79D6B2E02ADC846D0018F4F8 /* View+SyncPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SyncPreference.swift"; sourceTree = "<group>"; };
@@ -174,8 +183,10 @@
 		7940E1CA2AD95D440036D710 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7940E1D02AD95ED90036D710 /* SampleData */,
 				7940E1CD2AD95DA80036D710 /* Standup.swift */,
+				79489E1A2AE036D00040C708 /* Attendee.swift */,
+				79489E1D2AE042C00040C708 /* Theme.swift */,
+				7940E1D02AD95ED90036D710 /* SampleData */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -225,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				79D6B2F52ADD18D10018F4F8 /* Info.plist */,
+				79489E212AE043F40040C708 /* iOSIcon.xcassets */,
 			);
 			path = "Standups-MVC-iOS";
 			sourceTree = "<group>";
@@ -379,6 +391,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79489E3D2AE044920040C708 /* Assets.xcassets in Resources */,
+				79489E222AE043F40040C708 /* iOSIcon.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,9 +408,11 @@
 				796874032ADD5D6C0066F95E /* Playground.swift in Sources */,
 				7940E1A92AD94B8F0036D710 /* Standups_MVCApp.swift in Sources */,
 				7940E1C62AD9539F0036D710 /* Task+Sleep.swift in Sources */,
+				79489E1B2AE036D00040C708 /* Attendee.swift in Sources */,
 				7940E1D72ADC115B0036D710 /* TestUtils.swift in Sources */,
 				7940E1CE2AD95DA80036D710 /* Standup.swift in Sources */,
 				79489E142AE0097D0040C708 /* StandupDetailView.swift in Sources */,
+				79489E1E2AE042C00040C708 /* Theme.swift in Sources */,
 				79D6B2E12ADC846D0018F4F8 /* View+SyncPreference.swift in Sources */,
 				7940E1D42AD9607A0036D710 /* EditStandupView.swift in Sources */,
 			);
@@ -427,9 +443,11 @@
 				796874042ADD5D700066F95E /* Playground.swift in Sources */,
 				79D6B2F72ADD18FF0018F4F8 /* View+SyncPreference.swift in Sources */,
 				79D6B2F62ADD18FE0018F4F8 /* TestUtils.swift in Sources */,
+				79489E1C2AE036D00040C708 /* Attendee.swift in Sources */,
 				79D6B2F82ADD18FF0018F4F8 /* Task+Sleep.swift in Sources */,
 				79D6B2FA2ADD19050018F4F8 /* Standup.swift in Sources */,
 				79489E152AE0097D0040C708 /* StandupDetailView.swift in Sources */,
+				79489E1F2AE042C00040C708 /* Theme.swift in Sources */,
 				79D6B2F92ADD19050018F4F8 /* SampleData.swift in Sources */,
 				79D6B2FC2ADD190B0018F4F8 /* EditStandupView.swift in Sources */,
 			);
