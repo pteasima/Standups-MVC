@@ -6,12 +6,12 @@ import SwiftUI
 final class Standup {
     var title: String
 //  var duration: Duration = Duration.seconds(60 * 5) // will cause a crash, SwiftData doesn't see to support custom Codable types well yet.
-  var duration: TimeInterval = 60*5
+  var durationInSeconds: Int64 = 60*5
   @Relationship
   var attendees: [Attendee] = []
   //  var meetings: IdentifiedArrayOf<Meeting> = []
   var theme: Theme = Theme.bubblegum
-  init(title: String = "", duration: TimeInterval = 60*5, attendees: [Attendee] = [], theme: Theme = .bubblegum) {
+  init(title: String = "", duration: Duration = .seconds(60*5), attendees: [Attendee] = [], theme: Theme = .bubblegum) {
     self.title = title
     self.duration = duration
     self.attendees = attendees
@@ -19,7 +19,11 @@ final class Standup {
 }
 
 extension Standup {
-  var durationPerAttendee: TimeInterval {
-    duration / TimeInterval(attendees.count) //TODO: this will round the double to seconds, but idk if correctly (what do we do with remainder?)
+  var duration: Duration {
+    get { .seconds(durationInSeconds) }
+    set { durationInSeconds = newValue.components.seconds }
+  }
+  var durationPerAttendee: Duration {
+    self.duration / self.attendees.count
   }
 }

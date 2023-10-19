@@ -16,7 +16,11 @@ struct StandupDetailView: View {
             Label("Start Meeting", systemImage: "timer")
               .bold()
           }
-        Label("Length", systemImage: "clock")
+          HStack {
+            Label("Length", systemImage: "clock")
+            Spacer()
+            Text(standup.duration.formatted(.units()))
+          }
           HStack {
             Label("Theme", systemImage: "paintpalette")
             Spacer()

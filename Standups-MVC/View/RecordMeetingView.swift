@@ -38,7 +38,7 @@ struct RecordMeetingView: View {
       .task {
         for await _ in AsyncPublisher(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) {
           secondsElapsed += 1
-          if secondsElapsed.isMultiple(of: Int(standup.durationPerAttendee)) {
+          if secondsElapsed.isMultiple(of: Int(standup.durationPerAttendee.components.seconds)) {
             let nextSpeakerIndex = speakerIndex + 1
             if standup.attendees.indices.contains(nextSpeakerIndex) {
               speakerIndex = nextSpeakerIndex
@@ -66,7 +66,7 @@ struct RecordMeetingView: View {
       VStack(alignment: .trailing) {
         Text("Time Remaining")
         Label(
-          Duration.seconds(standup.duration - TimeInterval(secondsElapsed)).formatted(.units()),
+          (standup.duration - Duration.seconds(secondsElapsed)).formatted(.units()),
           systemImage: "hourglass.bottomhalf.fill"
         )
       }
@@ -125,7 +125,7 @@ struct RecordMeetingView: View {
   }}
   
   private var progress: Double {
-    return max(0, min(1, Double(self.secondsElapsed) / standup.duration))
+    return max(0, min(1, Double(self.secondsElapsed) / Double(standup.duration.components.seconds)))
   }
 }
 
@@ -181,7 +181,7 @@ struct MeetingProgressViewStyle: ProgressViewStyle {
 #Preview {
   let modelContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
   let standup = Standup.sample
-  standup.duration = 10
+  standup.duration = .seconds(10)
   modelContainer.mainContext.insert(standup)
   return NavigationStack {
     RecordMeetingView(standup: standup)

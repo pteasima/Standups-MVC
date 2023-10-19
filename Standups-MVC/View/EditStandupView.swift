@@ -12,11 +12,11 @@ struct EditStandupView: View {
             Text("Title")
           }
           HStack {
-            Slider(value: $standup.duration, in: 5...30, step: 1) {
+            Slider(value: $standup.duration.seconds, in: 5...30, step: 1) {
               Text("Length")
             }
             Spacer()
-            Text(standup.duration.formatted())
+            Text(standup.duration.formatted(.units()))
           }
         }
         Section {
@@ -59,6 +59,14 @@ struct EditStandupView: View {
     standup.attendees.append(.init())
   }}
 }
+
+fileprivate extension Duration {
+  var seconds: Double {
+    get { Double(self.components.seconds / 60) }
+    set { self = .seconds(newValue * 60) }
+  }
+}
+
 
 #Preview {
   let modelContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
