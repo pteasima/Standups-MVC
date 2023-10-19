@@ -17,3 +17,9 @@ final class Standup {
     self.attendees = attendees
   }
 }
+
+extension Standup {
+  var durationPerAttendee: TimeInterval {
+    duration / TimeInterval(attendees.count) //TODO: this will round the double to seconds, but idk if correctly (what do we do with remainder?)
+  }
+}

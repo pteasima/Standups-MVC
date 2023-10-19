@@ -15,7 +15,7 @@ struct Standups_MVCApp: App {
 //            Playground()
 //                .modelContainer(for: AModel.self, inMemory: true)
             StandupsListView()
-                .modelContainer(for: Standup.self, inMemory: true)
+                .modelContainer(for: Standup.self, isAutosaveEnabled: true)
 //            TestView(modelContainer: modelContainer)
         }
     }

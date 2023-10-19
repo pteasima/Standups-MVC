@@ -10,8 +10,8 @@ struct StandupDetailView: View {
     withChildPreference(key: TextFieldBinding.self) { textFieldPipe in
       List {
         Section {
-          Button {
-            startMeeting()
+          NavigationLink {
+            RecordMeetingView(standup: standup)
           } label: {
             Label("Start Meeting", systemImage: "timer")
               .bold()
@@ -24,8 +24,7 @@ struct StandupDetailView: View {
               .foregroundStyle(standup.theme.accentColor)
               .padding(4)
               .background {
-                standup.theme.mainColor
-                  .clipShape(RoundedRectangle(cornerRadius: 4))
+                RoundedRectangle(cornerRadius: 4).fill(standup.theme.mainColor.gradient) 
               }
           }
         } header: {
@@ -65,12 +64,6 @@ struct StandupDetailView: View {
       }
     }
     .preference(key: ButtonAction.self, value: .init(actions: [ "Edit" : { isEditing = true } ]))
-  }
-  
-  var startMeeting: () -> Void {
-    {
-      
-    }
   }
   
   var delete: () -> Void {

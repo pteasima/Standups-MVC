@@ -27,7 +27,10 @@ struct StandupsListView: View {
                           }
                         }
                         .foregroundColor(standup.theme.accentColor)
-                        .listRowBackground(standup.theme.mainColor)
+                        .listRowBackground(Rectangle().fill(standup.theme.mainColor.gradient))
+                    }
+                    .onDelete { indexSet in
+                      
                     }
                 }
                 .navigationTitle("Standups")

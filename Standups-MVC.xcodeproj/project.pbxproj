@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		791E4ACA2AE1325D006DFE88 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791E4AC92AE1325D006DFE88 /* SpeechRecognizer.swift */; };
+		791E4ACB2AE1325D006DFE88 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791E4AC92AE1325D006DFE88 /* SpeechRecognizer.swift */; };
+		791E4ACD2AE13AEF006DFE88 /* EnvironmentValues+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791E4ACC2AE13AEF006DFE88 /* EnvironmentValues+Key.swift */; };
+		791E4ACE2AE13AEF006DFE88 /* EnvironmentValues+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791E4ACC2AE13AEF006DFE88 /* EnvironmentValues+Key.swift */; };
+		791E4AD32AE15D11006DFE88 /* SensoryFeedbackPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791E4AD22AE15D11006DFE88 /* SensoryFeedbackPlayer.swift */; };
+		791E4AD42AE15D11006DFE88 /* SensoryFeedbackPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791E4AD22AE15D11006DFE88 /* SensoryFeedbackPlayer.swift */; };
+		7938E2162AE1673B00A1B94B /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7938E2152AE1673B00A1B94B /* ding.wav */; };
+		7938E2172AE1673B00A1B94B /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7938E2152AE1673B00A1B94B /* ding.wav */; };
 		7940E1A92AD94B8F0036D710 /* Standups_MVCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1A82AD94B8F0036D710 /* Standups_MVCApp.swift */; };
 		7940E1AB2AD94B8F0036D710 /* StandupsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1AA2AD94B8F0036D710 /* StandupsListView.swift */; };
 		7940E1AD2AD94B920036D710 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7940E1AC2AD94B920036D710 /* Assets.xcassets */; };
@@ -30,6 +38,8 @@
 		796874002ADD1D9B0066F95E /* StandupListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1BA2AD94B920036D710 /* StandupListTests.swift */; };
 		796874032ADD5D6C0066F95E /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796874022ADD5D6C0066F95E /* Playground.swift */; };
 		796874042ADD5D700066F95E /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796874022ADD5D6C0066F95E /* Playground.swift */; };
+		79D60B112AE0533D00F8C8ED /* RecordMeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D60B102AE0533D00F8C8ED /* RecordMeetingView.swift */; };
+		79D60B122AE0533D00F8C8ED /* RecordMeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D60B102AE0533D00F8C8ED /* RecordMeetingView.swift */; };
 		79D6B2E12ADC846D0018F4F8 /* View+SyncPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6B2E02ADC846D0018F4F8 /* View+SyncPreference.swift */; };
 		79D6B2F62ADD18FE0018F4F8 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1D62ADC115B0036D710 /* TestUtils.swift */; };
 		79D6B2F72ADD18FF0018F4F8 /* View+SyncPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6B2E02ADC846D0018F4F8 /* View+SyncPreference.swift */; };
@@ -59,6 +69,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		791E4AC92AE1325D006DFE88 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		791E4ACC2AE13AEF006DFE88 /* EnvironmentValues+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+Key.swift"; sourceTree = "<group>"; };
+		791E4AD22AE15D11006DFE88 /* SensoryFeedbackPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensoryFeedbackPlayer.swift; sourceTree = "<group>"; };
+		7938E2152AE1673B00A1B94B /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ding.wav; sourceTree = "<group>"; };
 		7940E1A12AD94B8F0036D710 /* Standups-MVC-xrOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Standups-MVC-xrOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7940E1A82AD94B8F0036D710 /* Standups_MVCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standups_MVCApp.swift; sourceTree = "<group>"; };
 		7940E1AA2AD94B8F0036D710 /* StandupsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandupsListView.swift; sourceTree = "<group>"; };
@@ -80,6 +94,7 @@
 		79489E3E2AE048780040C708 /* TrailingIconLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailingIconLabelStyle.swift; sourceTree = "<group>"; };
 		796873F72ADD1D4B0066F95E /* Standups-MVC-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Standups-MVC-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		796874022ADD5D6C0066F95E /* Playground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playground.swift; sourceTree = "<group>"; };
+		79D60B102AE0533D00F8C8ED /* RecordMeetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordMeetingView.swift; sourceTree = "<group>"; };
 		79D6B2E02ADC846D0018F4F8 /* View+SyncPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SyncPreference.swift"; sourceTree = "<group>"; };
 		79D6B2E72ADD189E0018F4F8 /* Standups-MVC-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Standups-MVC-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79D6B2F52ADD18D10018F4F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -117,6 +132,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7938E2182AE1674900A1B94B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7940E1AC2AD94B920036D710 /* Assets.xcassets */,
+				7938E2152AE1673B00A1B94B /* ding.wav */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		7940E1982AD94B8F0036D710 = {
 			isa = PBXGroup;
 			children = (
@@ -151,7 +175,7 @@
 				7940E1CA2AD95D440036D710 /* Model */,
 				7940E1CB2AD95D490036D710 /* View */,
 				7940E1A82AD94B8F0036D710 /* Standups_MVCApp.swift */,
-				7940E1AC2AD94B920036D710 /* Assets.xcassets */,
+				7938E2182AE1674900A1B94B /* Resources */,
 				7940E1AE2AD94B920036D710 /* Preview Content */,
 			);
 			path = "Standups-MVC";
@@ -180,6 +204,7 @@
 				7940E1D62ADC115B0036D710 /* TestUtils.swift */,
 				79D6B2E02ADC846D0018F4F8 /* View+SyncPreference.swift */,
 				79489E3E2AE048780040C708 /* TrailingIconLabelStyle.swift */,
+				791E4ACC2AE13AEF006DFE88 /* EnvironmentValues+Key.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -201,6 +226,7 @@
 				7940E1AA2AD94B8F0036D710 /* StandupsListView.swift */,
 				7940E1D32AD9607A0036D710 /* EditStandupView.swift */,
 				79489E132AE0097D0040C708 /* StandupDetailView.swift */,
+				79D60B102AE0533D00F8C8ED /* RecordMeetingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -208,6 +234,8 @@
 		7940E1CC2AD95D540036D710 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				791E4AC92AE1325D006DFE88 /* SpeechRecognizer.swift */,
+				791E4AD22AE15D11006DFE88 /* SensoryFeedbackPlayer.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -372,6 +400,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7938E2162AE1673B00A1B94B /* ding.wav in Resources */,
 				7940E1B02AD94B920036D710 /* Preview Assets.xcassets in Resources */,
 				7940E1AD2AD94B920036D710 /* Assets.xcassets in Resources */,
 			);
@@ -395,6 +424,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7938E2172AE1673B00A1B94B /* ding.wav in Resources */,
 				79489E3D2AE044920040C708 /* Assets.xcassets in Resources */,
 				79489E222AE043F40040C708 /* iOSIcon.xcassets in Resources */,
 			);
@@ -411,8 +441,12 @@
 				7940E1D22AD95EE10036D710 /* SampleData.swift in Sources */,
 				796874032ADD5D6C0066F95E /* Playground.swift in Sources */,
 				7940E1A92AD94B8F0036D710 /* Standups_MVCApp.swift in Sources */,
+				791E4ACD2AE13AEF006DFE88 /* EnvironmentValues+Key.swift in Sources */,
 				7940E1C62AD9539F0036D710 /* Task+Sleep.swift in Sources */,
+				791E4AD32AE15D11006DFE88 /* SensoryFeedbackPlayer.swift in Sources */,
+				791E4ACA2AE1325D006DFE88 /* SpeechRecognizer.swift in Sources */,
 				79489E1B2AE036D00040C708 /* Attendee.swift in Sources */,
+				79D60B112AE0533D00F8C8ED /* RecordMeetingView.swift in Sources */,
 				7940E1D72ADC115B0036D710 /* TestUtils.swift in Sources */,
 				7940E1CE2AD95DA80036D710 /* Standup.swift in Sources */,
 				79489E3F2AE048780040C708 /* TrailingIconLabelStyle.swift in Sources */,
@@ -447,8 +481,12 @@
 				79D6B2FB2ADD190B0018F4F8 /* StandupsListView.swift in Sources */,
 				796874042ADD5D700066F95E /* Playground.swift in Sources */,
 				79D6B2F72ADD18FF0018F4F8 /* View+SyncPreference.swift in Sources */,
+				791E4ACE2AE13AEF006DFE88 /* EnvironmentValues+Key.swift in Sources */,
 				79D6B2F62ADD18FE0018F4F8 /* TestUtils.swift in Sources */,
+				791E4AD42AE15D11006DFE88 /* SensoryFeedbackPlayer.swift in Sources */,
+				791E4ACB2AE1325D006DFE88 /* SpeechRecognizer.swift in Sources */,
 				79489E1C2AE036D00040C708 /* Attendee.swift in Sources */,
+				79D60B122AE0533D00F8C8ED /* RecordMeetingView.swift in Sources */,
 				79D6B2F82ADD18FF0018F4F8 /* Task+Sleep.swift in Sources */,
 				79D6B2FA2ADD19050018F4F8 /* Standup.swift in Sources */,
 				79489E402AE048780040C708 /* TrailingIconLabelStyle.swift in Sources */,

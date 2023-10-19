@@ -2,12 +2,15 @@ import Foundation
 
 extension Standup {
     static var sample: Standup {
-      .init(title: "Sample Standup", attendees: [.sample])
+      .init(title: "Daily Standup", attendees: [.sample, .sample2])
     }
 }
 
 extension Attendee {
   static var sample: Attendee {
     .init(name: "Tomas Fuk")
+  }
+  static var sample2: Attendee {
+    .init(name: "John Doe")
   }
 }
