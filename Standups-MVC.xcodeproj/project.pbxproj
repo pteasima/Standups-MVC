@@ -49,6 +49,12 @@
 		79D6B2FB2ADD190B0018F4F8 /* StandupsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1AA2AD94B8F0036D710 /* StandupsListView.swift */; };
 		79D6B2FC2ADD190B0018F4F8 /* EditStandupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1D32AD9607A0036D710 /* EditStandupView.swift */; };
 		79D6B2FD2ADD19110018F4F8 /* Standups_MVCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1A82AD94B8F0036D710 /* Standups_MVCApp.swift */; };
+		79D835D72AE7DA2200B111EA /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D835D62AE7DA2200B111EA /* Reference.swift */; };
+		79D835D82AE7DA2200B111EA /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D835D62AE7DA2200B111EA /* Reference.swift */; };
+		79F1CC782AE7E4E10075D6D2 /* Standup+DeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC772AE7E4E10075D6D2 /* Standup+DeepCopy.swift */; };
+		79F1CC7A2AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC792AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift */; };
+		79F1CC7B2AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC792AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift */; };
+		79F1CC7C2AE7E4F40075D6D2 /* Standup+DeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC772AE7E4E10075D6D2 /* Standup+DeepCopy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +104,9 @@
 		79D6B2E02ADC846D0018F4F8 /* View+SyncPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SyncPreference.swift"; sourceTree = "<group>"; };
 		79D6B2E72ADD189E0018F4F8 /* Standups-MVC-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Standups-MVC-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79D6B2F52ADD18D10018F4F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		79D835D62AE7DA2200B111EA /* Reference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
+		79F1CC772AE7E4E10075D6D2 /* Standup+DeepCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Standup+DeepCopy.swift"; sourceTree = "<group>"; };
+		79F1CC792AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Attendee+DeepCopy.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +214,7 @@
 				79D6B2E02ADC846D0018F4F8 /* View+SyncPreference.swift */,
 				79489E3E2AE048780040C708 /* TrailingIconLabelStyle.swift */,
 				791E4ACC2AE13AEF006DFE88 /* EnvironmentValues+Key.swift */,
+				79D835D62AE7DA2200B111EA /* Reference.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -216,6 +226,7 @@
 				79489E1A2AE036D00040C708 /* Attendee.swift */,
 				79489E1D2AE042C00040C708 /* Theme.swift */,
 				7940E1D02AD95ED90036D710 /* SampleData */,
+				79F1CC762AE7E4CA0075D6D2 /* CopyingBoilerplate */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -271,6 +282,15 @@
 				79489E212AE043F40040C708 /* iOSIcon.xcassets */,
 			);
 			path = "Standups-MVC-iOS";
+			sourceTree = "<group>";
+		};
+		79F1CC762AE7E4CA0075D6D2 /* CopyingBoilerplate */ = {
+			isa = PBXGroup;
+			children = (
+				79F1CC772AE7E4E10075D6D2 /* Standup+DeepCopy.swift */,
+				79F1CC792AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift */,
+			);
+			path = CopyingBoilerplate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -441,6 +461,7 @@
 				7940E1D22AD95EE10036D710 /* SampleData.swift in Sources */,
 				796874032ADD5D6C0066F95E /* Playground.swift in Sources */,
 				7940E1A92AD94B8F0036D710 /* Standups_MVCApp.swift in Sources */,
+				79F1CC7A2AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift in Sources */,
 				791E4ACD2AE13AEF006DFE88 /* EnvironmentValues+Key.swift in Sources */,
 				7940E1C62AD9539F0036D710 /* Task+Sleep.swift in Sources */,
 				791E4AD32AE15D11006DFE88 /* SensoryFeedbackPlayer.swift in Sources */,
@@ -452,6 +473,8 @@
 				79489E3F2AE048780040C708 /* TrailingIconLabelStyle.swift in Sources */,
 				79489E142AE0097D0040C708 /* StandupDetailView.swift in Sources */,
 				79489E1E2AE042C00040C708 /* Theme.swift in Sources */,
+				79F1CC782AE7E4E10075D6D2 /* Standup+DeepCopy.swift in Sources */,
+				79D835D72AE7DA2200B111EA /* Reference.swift in Sources */,
 				79D6B2E12ADC846D0018F4F8 /* View+SyncPreference.swift in Sources */,
 				7940E1D42AD9607A0036D710 /* EditStandupView.swift in Sources */,
 			);
@@ -483,6 +506,7 @@
 				79D6B2F72ADD18FF0018F4F8 /* View+SyncPreference.swift in Sources */,
 				791E4ACE2AE13AEF006DFE88 /* EnvironmentValues+Key.swift in Sources */,
 				79D6B2F62ADD18FE0018F4F8 /* TestUtils.swift in Sources */,
+				79F1CC7B2AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift in Sources */,
 				791E4AD42AE15D11006DFE88 /* SensoryFeedbackPlayer.swift in Sources */,
 				791E4ACB2AE1325D006DFE88 /* SpeechRecognizer.swift in Sources */,
 				79489E1C2AE036D00040C708 /* Attendee.swift in Sources */,
@@ -492,6 +516,8 @@
 				79489E402AE048780040C708 /* TrailingIconLabelStyle.swift in Sources */,
 				79489E152AE0097D0040C708 /* StandupDetailView.swift in Sources */,
 				79489E1F2AE042C00040C708 /* Theme.swift in Sources */,
+				79F1CC7C2AE7E4F40075D6D2 /* Standup+DeepCopy.swift in Sources */,
+				79D835D82AE7DA2200B111EA /* Reference.swift in Sources */,
 				79D6B2F92ADD19050018F4F8 /* SampleData.swift in Sources */,
 				79D6B2FC2ADD190B0018F4F8 /* EditStandupView.swift in Sources */,
 			);

@@ -3,7 +3,9 @@ import SwiftData
 
 struct EditStandupView: View {
   @Environment(\.dismiss) private var dismiss
+  @Environment(\.modelContext) private var modelContext
   @Bindable var standup: Standup
+  var onSave: () -> Void = { }
   var body: some View {
     NavigationStack {
       Form {
@@ -11,6 +13,7 @@ struct EditStandupView: View {
           TextField(text: $standup.title) {
             Text("Title")
           }
+          .preference(key: TextFieldBinding.self, value: .init(id: "Title Field", text: $standup.title))
           HStack {
             Slider(value: $standup.duration.seconds, in: 5...30, step: 1) {
               Text("Length")
@@ -46,7 +49,6 @@ struct EditStandupView: View {
       .toolbar {
         ToolbarItem(placement: .cancellationAction) {
           Button {
-            //TODO: undo via undo manager
             dismiss()
           } label: {
             Text("Cancel")
@@ -54,18 +56,28 @@ struct EditStandupView: View {
         }
         ToolbarItem(placement: .confirmationAction) {
           Button {
-            dismiss()
+            save()
           } label: {
-            Text("Done")
+            Text("Save")
           }
         }
       }
     }
-    .preference(key: TextFieldBinding.self, value: .init(id: "Title Field", text: $standup.title))
+    .preference(key: ButtonAction.self, value: .init(actions: [\Self.save: save]))
+    .task {
+      if standup.modelContext == nil {
+        
+      }
+    }
   }
   
   var addAttendee: () -> Void {{
     standup.attendees.append(.init())
+  }}
+  
+  var save: () -> Void {{
+    onSave()
+    dismiss()
   }}
 }
 

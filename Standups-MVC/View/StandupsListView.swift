@@ -5,8 +5,8 @@ struct StandupsListView: View {
     @Environment(\.modelContext) var modelContext
     @Query var standups: [Standup]
     @State private var newStandup: Standup?
-    
     @State var path: [Standup] = []
+    @State @Reference private var draftContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
     var body: some View {
         withChildPreference(key: TextFieldBinding.self) { textFieldBindingPipe in
             NavigationStack(path: $path) {
@@ -47,8 +47,11 @@ struct StandupsListView: View {
                     }
                 }
                 .sheet(item: $newStandup) { standup in
-                    EditStandupView(standup: standup)
-                        .syncPreference(using: textFieldBindingPipe)
+                  EditStandupView(standup: standup, onSave: {
+                    modelContext.insert(standup.deepCopy)
+                  })
+                    .modelContext(standup.modelContext!)
+                    .syncPreference(using: textFieldBindingPipe)
                 }
                 .navigationDestination(for: Standup.self) { standup in
                     StandupDetailView(standup: standup)
@@ -66,11 +69,16 @@ struct StandupsListView: View {
         }
     }
     
-    private func addStandup() {
-        let newStandup = Standup(title: "")
-        modelContext.insert(newStandup)
-        self.newStandup = newStandup
+  @MainActor
+  private func addStandup() {
+    let draftContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
+    let newStandup = Standup(title: "")
+    draftContainer.mainContext.insert(newStandup)
+    Task {
+      try await Task.sleep() // Tiny delay is needed otherwise sheet will be presented twice. This only happens because draftContainer has just been created. While we could create it eagerly, this seems like an apple bug that might get resolved, so Im ok with this workaround.
+      self.newStandup = newStandup
     }
+  }
 }
 
 #Preview {

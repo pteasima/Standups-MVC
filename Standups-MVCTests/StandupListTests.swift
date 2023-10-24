@@ -23,6 +23,7 @@ final class StandupListTests: XCTestCase {
       var modelContainer: ModelContainer
       @State private var standups: [Standup] = []
       @State private var addButtonAction = { }
+      @State private var saveAction = { }
       @State private var titleBinding: Binding<String> = .constant("")
       
       var body: some View {
@@ -33,19 +34,19 @@ final class StandupListTests: XCTestCase {
             try! await Task.sleep()
             try! await Task.sleep()
 
-            XCTAssertEqual(standups.map(\.title), ["Sample Standup"])
+            XCTAssertEqual(standups.map(\.title), ["Daily Standup"])
             
             addButtonAction()
             try! await Task.sleep(until: .now + .seconds(1), clock: .suspending)
-            print("value", titleBinding.wrappedValue)
             titleBinding.wrappedValue = "hello"
-            print("value", titleBinding.wrappedValue)
             try! await Task.sleep(until: .now + .seconds(1), clock: .suspending)
-            print(standups)
-            XCTAssertEqual(standups.map(\.title).sorted(), ["hello", "Sample Standup"].sorted())
+            saveAction()
+            try! await Task.sleep(until: .now + .seconds(1), clock: .suspending)
+            XCTAssertEqual(standups.map(\.title).sorted(), ["Daily Standup", "hello"].sorted())
           }
           .onPreferenceChange(ButtonAction.self) { action in
             addButtonAction = action.actions["Add"] ?? { }
+            saveAction = action.actions[\EditStandupView.save] ?? { }
           }
           .onPreferenceChange(StatePreference.self) { value in
             standups = value.value as! [Standup]

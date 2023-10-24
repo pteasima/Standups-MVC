@@ -10,13 +10,15 @@ import SwiftData
 
 @main
 struct Standups_MVCApp: App {
-    var body: some Scene {
-        WindowGroup {
-//            Playground()
-//                .modelContainer(for: AModel.self, inMemory: true)
-            StandupsListView()
-                .modelContainer(for: Standup.self, isAutosaveEnabled: true)
-//            TestView(modelContainer: modelContainer)
-        }
+  var body: some Scene {
+    WindowGroup {
+      //            Playground()
+      //                .modelContainer(for: AModel.self, inMemory: true)
+      StandupsListView()
+        .modelContainer(for: Standup.self, isAutosaveEnabled: true)
+      //            TestView(modelContainer: modelContainer)
     }
+  }
 }
+
+
