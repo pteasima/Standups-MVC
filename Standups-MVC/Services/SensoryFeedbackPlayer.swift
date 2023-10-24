@@ -10,6 +10,7 @@ struct CustomSensoryFeedback {
 }
 
 struct SensoryFeedbackPlayer {
+  // This load and play logic was taken from pointfreeco, but I actually kinda hate it. Multiple views could share the same player, so doing anything except load, then immediatelly play, is unsafe. TODO: rethink this or just have a dingPlayer like apple/scrumdinger.
   var load: (CustomSensoryFeedback) -> Void
   var play: () -> Void
 }

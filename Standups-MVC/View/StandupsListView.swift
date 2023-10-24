@@ -30,7 +30,7 @@ struct StandupsListView: View {
                         .listRowBackground(Rectangle().fill(standup.theme.mainColor.gradient))
                     }
                     .onDelete { indexSet in
-                      
+                      indexSet.map { standups[$0] }.forEach(modelContext.delete)
                     }
                 }
                 .navigationTitle("Standups")

@@ -33,7 +33,10 @@ enum Theme: String, CaseIterable, Equatable, Hashable, Identifiable, Codable {
 
   var mainColor: Color { Color(self.rawValue) }
 
-  var name: String { self.rawValue.replacingOccurrences(of: "custom", with: "").capitalized }
+  var name: String {
+    // I hate this string manipulation with a passion, but it was the fastest way.
+    self.rawValue.replacingOccurrences(of: "custom", with: "").capitalized
+  }
 }
 
 #Preview {

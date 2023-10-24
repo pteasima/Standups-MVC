@@ -18,6 +18,15 @@ struct EditStandupView: View {
             Spacer()
             Text(standup.duration.formatted(.units()))
           }
+          
+          //TODO: build a proper picker (none of the built-in styles are good and custom styles are not possible yet)
+          Picker("Theme", selection: $standup.theme) {
+            ForEach(Theme.allCases) { theme in
+              Text(theme.name)
+//                .background { theme.mainColor } //menu picker style doesn't honor this anyway
+            }
+          }
+          
         }
         Section {
           //TODO: this binding strugless with the changing order (once I ended up with two rows for the same attendee). Should be fixed once order is stable.
