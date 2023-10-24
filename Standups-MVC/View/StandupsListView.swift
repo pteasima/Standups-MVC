@@ -70,7 +70,7 @@ struct StandupsListView: View {
     }
     
   @MainActor
-  private func addStandup() {
+  private var addStandup: () -> Void {{
     let draftContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
     let newStandup = Standup(title: "")
     draftContainer.mainContext.insert(newStandup)
@@ -78,7 +78,7 @@ struct StandupsListView: View {
       try await Task.sleep() // Tiny delay is needed otherwise sheet will be presented twice. This only happens because draftContainer has just been created. While we could create it eagerly, this seems like an apple bug that might get resolved, so Im ok with this workaround.
       self.newStandup = newStandup
     }
-  }
+  }}
 }
 
 #Preview {

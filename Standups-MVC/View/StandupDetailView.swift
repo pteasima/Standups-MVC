@@ -56,7 +56,7 @@ struct StandupDetailView: View {
       .toolbar {
         ToolbarItem {
           Button {
-            isEditing = true
+            edit()
           } label: {
             Text("Edit")
           }
@@ -67,8 +67,12 @@ struct StandupDetailView: View {
           .syncPreference(using: textFieldPipe)
       }
     }
-    .preference(key: ButtonAction.self, value: .init(actions: [ "Edit" : { isEditing = true } ]))
+    .preference(key: ButtonAction.self, value: .init(actions: [ \Self.edit : { isEditing = true } ]))
   }
+  
+  var edit: () -> Void {{
+    isEditing = true
+  }}
   
   var delete: () -> Void {
     {

@@ -62,7 +62,7 @@ final class StandupListTests: XCTestCase {
     window.rootViewController = host
     window.makeKeyAndVisible()
     
-    try await Task.sleep(until: .now + .seconds(3))
+    try await Task.sleep(until: .now + .seconds(5))
   }
   
   
@@ -102,7 +102,7 @@ final class StandupListTests: XCTestCase {
           })
           .onPreferenceChange(ButtonAction.self, perform: { value in
             print(value.actions)
-            editButtonAction = value.actions["Edit"] ?? {}
+            editButtonAction = value.actions[\StandupDetailView.edit] ?? {}
           })
           .onPreferenceChange(TextFieldBinding.self) { text in
             titleBinding = text.text

@@ -5,7 +5,7 @@ struct EditStandupView: View {
   @Environment(\.dismiss) private var dismiss
   @Environment(\.modelContext) private var modelContext
   @Bindable var standup: Standup
-  var onSave: () -> Void = { }
+  var onSave: (() -> Void)? = nil // when nil, this view only has a Done button (assumes edits are made live into the main modelContext). When not nil, it has Cancel and Save buttons. Idk if this is the best UX, but I wanted to show how easy live edits are (when editing from StandupDetailView) compared to the cumbersome copying to and from another modelContainer (when adding from StandupsListView).
   var body: some View {
     NavigationStack {
       Form {
@@ -13,7 +13,6 @@ struct EditStandupView: View {
           TextField(text: $standup.title) {
             Text("Title")
           }
-          .preference(key: TextFieldBinding.self, value: .init(id: "Title Field", text: $standup.title))
           HStack {
             Slider(value: $standup.duration.seconds, in: 5...30, step: 1) {
               Text("Length")
@@ -26,7 +25,7 @@ struct EditStandupView: View {
           Picker("Theme", selection: $standup.theme) {
             ForEach(Theme.allCases) { theme in
               Text(theme.name)
-//                .background { theme.mainColor } //menu picker style doesn't honor this anyway
+              //                .background { theme.mainColor } //menu picker style doesn't honor this anyway
             }
           }
           
@@ -47,28 +46,27 @@ struct EditStandupView: View {
       }
       .navigationTitle(standup.title)
       .toolbar {
-        ToolbarItem(placement: .cancellationAction) {
-          Button {
-            dismiss()
-          } label: {
-            Text("Cancel")
+        if let _ = onSave {
+          ToolbarItem(placement: .cancellationAction) {
+            Button {
+              dismiss()
+            } label: {
+              Text("Cancel")
+            }
           }
         }
         ToolbarItem(placement: .confirmationAction) {
           Button {
             save()
           } label: {
-            Text("Save")
+            Text(onSave == nil ? "Done": "Save")
           }
         }
       }
     }
+    //this preference must be here. It doesn't propagate from within the Form, not yet sure why.
+    .preference(key: TextFieldBinding.self, value: .init(id: "Title Field", text: $standup.title))
     .preference(key: ButtonAction.self, value: .init(actions: [\Self.save: save]))
-    .task {
-      if standup.modelContext == nil {
-        
-      }
-    }
   }
   
   var addAttendee: () -> Void {{
@@ -76,7 +74,7 @@ struct EditStandupView: View {
   }}
   
   var save: () -> Void {{
-    onSave()
+    onSave?()
     dismiss()
   }}
 }
