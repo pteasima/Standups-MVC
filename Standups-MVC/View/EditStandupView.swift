@@ -5,15 +5,23 @@ struct EditStandupView: View {
   @Environment(\.dismiss) private var dismiss
   @Environment(\.modelContext) private var modelContext
   @Bindable var standup: Standup
+  enum Field: Hashable {
+    case title
+    case attendee(PersistentIdentifier)
+  }
+  @FocusState var focusedField: Field?
+//  @State private var color: Color = .red
   var onSave: (() -> Void)? = nil // when nil, this view only has a Done button (assumes edits are made live into the main modelContext). When not nil, it has Cancel and Save buttons. Idk if this is the best UX, but I wanted to show how easy live edits are (when editing from StandupDetailView) compared to the cumbersome copying to and from another modelContainer (when adding from StandupsListView).
   var body: some View {
     NavigationStack {
-      Form {
+      ScrollView {
         Section {
-          TextField(text: $standup.title) {
+          TestableTextField(text: testable.$standup.title) {
             Text("Title")
           }
+          .focused($focusedField, equals: .title)
           HStack {
+            //slider is buggy on xrOS, sometimes freezes UI
             Slider(value: $standup.duration.seconds, in: 5...30, step: 1) {
               Text("Length")
             }
@@ -21,19 +29,32 @@ struct EditStandupView: View {
             Text(standup.duration.formatted(.units()))
           }
           
-          //TODO: build a proper picker (none of the built-in styles are good and custom styles are not possible yet)
+//          //TODO: build a proper picker (none of the built-in styles are good and custom styles are not possible yet)
+
           Picker("Theme", selection: $standup.theme) {
             ForEach(Theme.allCases) { theme in
-              Text(theme.name)
-              //                .background { theme.mainColor } //menu picker style doesn't honor this anyway
+//              HStack {
+//                Circle()
+//                  .foregroundStyle(theme.mainColor.gradient)
+                Text(theme.name)
+                  .foregroundStyle(theme.mainColor)
+//              }
+              .frame(maxWidth: .infinity, alignment: .center)
+              .background(in: RoundedRectangle(cornerRadius: 20))
+              .backgroundStyle(theme.mainColor.opacity(0.33).gradient)
+//                .background { theme.mainColor.edgesIgnoringSafeArea(.all) } //menu picker style doesn't honor this anyway
             }
           }
+          .pickerStyle(.wheel)
+          .frame(height: 140)
+//          ColorPicker("Theme", selection: $color)
           
         }
         Section {
           //TODO: this binding strugless with the changing order (once I ended up with two rows for the same attendee). Should be fixed once order is stable.
           ForEach($standup.attendees) { $attendee in
             TextField("Attendee Name", text: $attendee.name)
+              .focused($focusedField, equals: .attendee(attendee.id))
           }
           Button {
             addAttendee()
@@ -56,21 +77,18 @@ struct EditStandupView: View {
           }
         }
         ToolbarItem(placement: .confirmationAction) {
-          Button {
-            save()
-          } label: {
+          Button(action: testable.save) {
             Text(onSave == nil ? "Done": "Save")
           }
         }
       }
     }
-    //this preference must be here. It doesn't propagate from within the Form, not yet sure why.
-    .preference(key: TextFieldBinding.self, value: .init(id: "Title Field", text: $standup.title))
-    .preference(key: ButtonAction.self, value: .init(actions: [\Self.save: save]))
   }
   
   var addAttendee: () -> Void {{
-    standup.attendees.append(.init())
+    let newAttendee = Attendee()
+    standup.attendees.append(newAttendee)
+    focusedField = .attendee(newAttendee.id)
   }}
   
   var save: () -> Void {{

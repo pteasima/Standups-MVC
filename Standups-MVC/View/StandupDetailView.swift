@@ -67,7 +67,7 @@ struct StandupDetailView: View {
           .syncPreference(using: textFieldPipe)
       }
     }
-    .preference(key: ButtonAction.self, value: .init(actions: [ \Self.edit : { isEditing = true } ]))
+    .preference(key: TestPreference.self, value: .init(values: [ \Self.edit : { isEditing = true } ]))
   }
   
   var edit: () -> Void {{

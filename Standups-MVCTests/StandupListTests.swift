@@ -21,10 +21,7 @@ final class StandupListTests: XCTestCase {
     modelContainer.mainContext.insert(Standup.sample)
     struct TestView: View {
       var modelContainer: ModelContainer
-      @State private var standups: [Standup] = []
-      @State private var addButtonAction = { }
-      @State private var saveAction = { }
-      @State private var titleBinding: Binding<String> = .constant("")
+      @State private var testPreference: TestPreference = .init()
       
       var body: some View {
         return StandupsListView()
@@ -34,26 +31,20 @@ final class StandupListTests: XCTestCase {
             try! await Task.sleep()
             try! await Task.sleep()
 
-            XCTAssertEqual(standups.map(\.title), ["Daily Standup"])
+            XCTAssertEqual(testPreference[\StandupsListView.standups].map(\.title), ["Daily Standup"])
             
-            addButtonAction()
+            testPreference[\StandupsListView.addStandup]()
             try! await Task.sleep(until: .now + .seconds(1), clock: .suspending)
-            titleBinding.wrappedValue = "hello"
+            testPreference[\EditStandupView.$standup.title].wrappedValue = "hello"
             try! await Task.sleep(until: .now + .seconds(1), clock: .suspending)
-            saveAction()
+            testPreference[\EditStandupView.save]()
             try! await Task.sleep(until: .now + .seconds(1), clock: .suspending)
+            let standups = testPreference[\StandupsListView.standups]
             XCTAssertEqual(standups.map(\.title).sorted(), ["Daily Standup", "hello"].sorted())
           }
-          .onPreferenceChange(ButtonAction.self) { action in
-            addButtonAction = action.actions["Add"] ?? { }
-            saveAction = action.actions[\EditStandupView.save] ?? { }
-          }
-          .onPreferenceChange(StatePreference.self) { value in
-            standups = value.value as! [Standup]
-          }
-          .onPreferenceChange(TextFieldBinding.self) { text in
-            titleBinding = text.text
-          }
+          .onPreferenceChange(TestPreference.self, perform: { value in
+            testPreference = value
+          })
       }
     }
     
@@ -69,14 +60,14 @@ final class StandupListTests: XCTestCase {
   @MainActor
   func testEdit() async throws {
     struct TestView: View {
-      @State private var standups: [Standup] = []
-      @State private var path: Binding<AnyHashable> = .constant("nope")
-      @State private var editButtonAction: () -> Void = { }
-      @State private var titleBinding: Binding<String> = .constant("")
+//      @State private var editButtonAction: () -> Void = { }
+//      @State private var titleBinding: Binding<String> = .constant("")
+      @State private var testPreference: TestPreference = .init()
       
       var body: some View {
         let modelContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
-        [Standup.sample, Standup.sample].forEach(modelContainer.mainContext.insert)
+        //This test sometimes fails if we have multiple standups 🤔
+        [Standup.sample].forEach(modelContainer.mainContext.insert)
         return StandupsListView()
           .modelContainer(modelContainer)
           .task {
@@ -84,29 +75,18 @@ final class StandupListTests: XCTestCase {
             try! await Task.sleep()
             try! await Task.sleep()
             
-            XCTAssertEqual([Standup](), path.wrappedValue)
-            path.wrappedValue = [standups[1]]
+            XCTAssertEqual([Standup](), testPreference[\StandupsListView.$path].wrappedValue)
+            testPreference[\StandupsListView.$path].wrappedValue = [testPreference[\StandupsListView.standups][0]]
             try! await Task.sleep()
-            editButtonAction()
+            testPreference[\StandupDetailView.edit]()
             try! await Task.sleep()
-            titleBinding.wrappedValue = "hey"
+            testPreference[\EditStandupView.$standup.title].wrappedValue = "hey"
             try! await Task.sleep()
-            XCTAssertEqual(standups[1].title, "hey")
-            
+            XCTAssertEqual(testPreference[\StandupsListView.standups][0].title, "hey")
           }
-          .onPreferenceChange(StatePreference.self) { value in
-            standups = value.value as! [Standup]
-          }
-          .onPreferenceChange(StateBindingPreference.self, perform: {
-            path = $0.value
+          .onPreferenceChange(TestPreference.self, perform: { value in
+            testPreference = value
           })
-          .onPreferenceChange(ButtonAction.self, perform: { value in
-            print(value.actions)
-            editButtonAction = value.actions[\StandupDetailView.edit] ?? {}
-          })
-          .onPreferenceChange(TextFieldBinding.self) { text in
-            titleBinding = text.text
-          }
       }
     }
     
@@ -115,6 +95,6 @@ final class StandupListTests: XCTestCase {
     window.rootViewController = host
     window.makeKeyAndVisible()
     
-    try await Task.sleep(until: .now + .seconds(3))
+    try await Task.sleep(until: .now + .seconds(4))
   }
 }

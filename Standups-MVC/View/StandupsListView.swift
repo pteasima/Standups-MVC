@@ -8,7 +8,11 @@ struct StandupsListView: View {
     @State var path: [Standup] = []
     @State @Reference private var draftContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
     var body: some View {
-        withChildPreference(key: TextFieldBinding.self) { textFieldBindingPipe in
+//      Button(action: testable.addStandup) {
+//        Text("hello")
+//      }
+//      testableButton(action: \.addStandup)
+        withChildPreference(key: TestPreference.self) { textFieldBindingPipe in
             NavigationStack(path: $path) {
                 List {
                     ForEach(standups) { standup in
@@ -36,14 +40,9 @@ struct StandupsListView: View {
                 .navigationTitle("Standups")
                 .toolbar {
                     ToolbarItem(placement: .automatic) {
-                        Button {
-                            addStandup()
-                        } label: {
+                      Button(action: testable.addStandup) {
                             Text("+")
-                        }
-                        .preference(key: ButtonAction.self, value: .init(actions: ["Add" : {
-                          addStandup()
-                        }]))
+                      }
                     }
                 }
                 .sheet(item: $newStandup) { standup in
@@ -57,12 +56,16 @@ struct StandupsListView: View {
                     StandupDetailView(standup: standup)
                 }
             }
-            .preference(key: StatePreference.self, value: .init(id: "standups", value: standups))
-            .preference(key: StateBindingPreference.self, value: .init(id: \Self.path, value: Binding {
-                path
-            } set: { (value: AnyHashable) in
-                path = value as! [Standup]
-            }))
+            .transformPreference(TestPreference.self) {
+              $0.values[\Self.standups] = standups
+              $0.values[\Self.$path] = $path
+            }
+//            .preference(key: StatePreference.self, value: .init(id: "standups", value: standups))
+//            .preference(key: StateBindingPreference.self, value: .init(id: \Self.path, value: Binding {
+//                path
+//            } set: { (value: AnyHashable) in
+//                path = value as! [Standup]
+//            }))
             .onChange(of: path) {
                 print("path", $0, $1)
             }
@@ -70,7 +73,7 @@ struct StandupsListView: View {
     }
     
   @MainActor
-  private var addStandup: () -> Void {{
+  var addStandup: () -> Void {{
     let draftContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
     let newStandup = Standup(title: "")
     draftContainer.mainContext.insert(newStandup)
