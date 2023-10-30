@@ -77,14 +77,15 @@ final class StandupListTests: XCTestCase {
             
             XCTAssertEqual([Standup](), testPreference[\StandupsListView.$path].wrappedValue)
             testPreference[\StandupsListView.$path].wrappedValue = [testPreference[\StandupsListView.standups][0]]
-            try! await Task.sleep()
+            try! await Task.sleep(until: .now + .seconds(1))
             testPreference[\StandupDetailView.edit]()
-            try! await Task.sleep()
+            try! await Task.sleep(until: .now + .seconds(1))
             testPreference[\EditStandupView.$standup.title].wrappedValue = "hey"
-            try! await Task.sleep()
+            try! await Task.sleep(until: .now + .seconds(1))
             XCTAssertEqual(testPreference[\StandupsListView.standups][0].title, "hey")
           }
           .onPreferenceChange(TestPreference.self, perform: { value in
+            print("test preference changed", value)
             testPreference = value
           })
       }
