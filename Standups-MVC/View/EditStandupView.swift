@@ -14,9 +14,9 @@ struct EditStandupView: View {
   var onSave: (() -> Void)? = nil // when nil, this view only has a Done button (assumes edits are made live into the main modelContext). When not nil, it has Cancel and Save buttons. Idk if this is the best UX, but I wanted to show how easy live edits are (when editing from StandupDetailView) compared to the cumbersome copying to and from another modelContainer (when adding from StandupsListView).
   var body: some View {
     NavigationStack {
-      ScrollView {
-        Section {
-          TestableTextField(text: testable.$standup.title) {
+      Form {
+        Section { 
+          TestableTextField(text: WithPath(id: \Self.$standup.title, wrappedValue: $standup.title)) {
             Text("Title")
           }
           .focused($focusedField, equals: .title)

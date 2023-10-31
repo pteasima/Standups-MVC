@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import Combine
+import Speech
 
 struct RecordMeetingView: View {
   @Environment(\.dismiss) private var dismiss
@@ -8,6 +9,7 @@ struct RecordMeetingView: View {
   var standup: Standup
   @State var secondsElapsed: Int = 0
   @State var speakerIndex: Int = 0
+  @State @Reference var transcript: String = ""
   var body: some View {
     VStack {
       header
@@ -36,14 +38,40 @@ struct RecordMeetingView: View {
       .navigationBarBackButtonHidden(true) 
       .customSensoryFeedback(.init(soundFilename: "ding.wav"), trigger: speakerIndex)
       .task {
-        for await _ in AsyncPublisher(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) {
-          secondsElapsed += 1
-          if secondsElapsed.isMultiple(of: Int(standup.durationPerAttendee.components.seconds)) {
-            let nextSpeakerIndex = speakerIndex + 1
-            if standup.attendees.indices.contains(nextSpeakerIndex) {
-              speakerIndex = nextSpeakerIndex
-            } else {
-//              finish()
+        
+        let authorization =
+          await speechRecognizer.authorizationStatus() == .notDetermined
+          ? speechRecognizer.requestAuthorization()
+          : speechRecognizer.authorizationStatus()
+
+        await withTaskGroup(of: Void.self) { group in
+          if authorization == .authorized {
+            group.addTask {
+              do {
+                let speechTask = await speechRecognizer.startTask(SFSpeechAudioBufferRecognitionRequest())
+                for try await result in speechTask {
+                  transcript = result.bestTranscription.formattedString
+                }
+              } catch {
+                if !transcript.isEmpty {
+                  transcript += " ❌"
+                }
+                fatalError(error.localizedDescription) //TODO: dont crash
+//                self.destination = .alert(.speechRecognizerFailed)
+              }
+            }
+          }
+          group.addTask {
+            for await _ in AsyncPublisher(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) {
+              secondsElapsed += 1
+              if secondsElapsed.isMultiple(of: Int(standup.durationPerAttendee.components.seconds)) {
+                let nextSpeakerIndex = speakerIndex + 1
+                if standup.attendees.indices.contains(nextSpeakerIndex) {
+                  speakerIndex = nextSpeakerIndex
+                } else {
+                  //              finish()
+                }
+              }
             }
           }
         }
