@@ -10,6 +10,7 @@ struct RecordMeetingView: View {
   @State var secondsElapsed: Int = 0
   @State var speakerIndex: Int = 0
   @State @Reference var transcript: String = ""
+  @State var transcriptionError: Error?
   var body: some View {
     VStack {
       header
@@ -35,7 +36,12 @@ struct RecordMeetingView: View {
           }
         }
       }
-      .navigationBarBackButtonHidden(true) 
+      .navigationBarBackButtonHidden(true)
+      .alert("Transcription Error", item: $transcriptionError) { _ in
+        Text("OK")
+      } message: {
+        Text($0.localizedDescription)
+      }
       .customSensoryFeedback(.init(soundFilename: "ding.wav"), trigger: speakerIndex)
       .task {
         
@@ -56,8 +62,7 @@ struct RecordMeetingView: View {
                 if !transcript.isEmpty {
                   transcript += " ❌"
                 }
-                fatalError(error.localizedDescription) //TODO: dont crash
-//                self.destination = .alert(.speechRecognizerFailed)
+                transcriptionError = error
               }
             }
           }

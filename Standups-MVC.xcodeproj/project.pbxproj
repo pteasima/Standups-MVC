@@ -55,6 +55,10 @@
 		79F1CC7A2AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC792AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift */; };
 		79F1CC7B2AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC792AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift */; };
 		79F1CC7C2AE7E4F40075D6D2 /* Standup+DeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC772AE7E4E10075D6D2 /* Standup+DeepCopy.swift */; };
+		79F1CC7E2AF137280075D6D2 /* Alert+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC7D2AF137280075D6D2 /* Alert+Item.swift */; };
+		79F1CC7F2AF137280075D6D2 /* Alert+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC7D2AF137280075D6D2 /* Alert+Item.swift */; };
+		79F1CC812AF138E70075D6D2 /* SimpleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC802AF138E70075D6D2 /* SimpleError.swift */; };
+		79F1CC822AF138E70075D6D2 /* SimpleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC802AF138E70075D6D2 /* SimpleError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +111,8 @@
 		79D835D62AE7DA2200B111EA /* Reference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
 		79F1CC772AE7E4E10075D6D2 /* Standup+DeepCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Standup+DeepCopy.swift"; sourceTree = "<group>"; };
 		79F1CC792AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Attendee+DeepCopy.swift"; sourceTree = "<group>"; };
+		79F1CC7D2AF137280075D6D2 /* Alert+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Item.swift"; sourceTree = "<group>"; };
+		79F1CC802AF138E70075D6D2 /* SimpleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +221,8 @@
 				79489E3E2AE048780040C708 /* TrailingIconLabelStyle.swift */,
 				791E4ACC2AE13AEF006DFE88 /* EnvironmentValues+Key.swift */,
 				79D835D62AE7DA2200B111EA /* Reference.swift */,
+				79F1CC7D2AF137280075D6D2 /* Alert+Item.swift */,
+				79F1CC802AF138E70075D6D2 /* SimpleError.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -461,6 +469,7 @@
 				7940E1D22AD95EE10036D710 /* SampleData.swift in Sources */,
 				796874032ADD5D6C0066F95E /* Playground.swift in Sources */,
 				7940E1A92AD94B8F0036D710 /* Standups_MVCApp.swift in Sources */,
+				79F1CC7E2AF137280075D6D2 /* Alert+Item.swift in Sources */,
 				79F1CC7A2AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift in Sources */,
 				791E4ACD2AE13AEF006DFE88 /* EnvironmentValues+Key.swift in Sources */,
 				7940E1C62AD9539F0036D710 /* Task+Sleep.swift in Sources */,
@@ -468,6 +477,7 @@
 				791E4ACA2AE1325D006DFE88 /* SpeechRecognizer.swift in Sources */,
 				79489E1B2AE036D00040C708 /* Attendee.swift in Sources */,
 				79D60B112AE0533D00F8C8ED /* RecordMeetingView.swift in Sources */,
+				79F1CC812AF138E70075D6D2 /* SimpleError.swift in Sources */,
 				7940E1D72ADC115B0036D710 /* TestUtils.swift in Sources */,
 				7940E1CE2AD95DA80036D710 /* Standup.swift in Sources */,
 				79489E3F2AE048780040C708 /* TrailingIconLabelStyle.swift in Sources */,
@@ -504,6 +514,7 @@
 				79D6B2FB2ADD190B0018F4F8 /* StandupsListView.swift in Sources */,
 				796874042ADD5D700066F95E /* Playground.swift in Sources */,
 				79D6B2F72ADD18FF0018F4F8 /* View+SyncPreference.swift in Sources */,
+				79F1CC7F2AF137280075D6D2 /* Alert+Item.swift in Sources */,
 				791E4ACE2AE13AEF006DFE88 /* EnvironmentValues+Key.swift in Sources */,
 				79D6B2F62ADD18FE0018F4F8 /* TestUtils.swift in Sources */,
 				79F1CC7B2AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift in Sources */,
@@ -511,6 +522,7 @@
 				791E4ACB2AE1325D006DFE88 /* SpeechRecognizer.swift in Sources */,
 				79489E1C2AE036D00040C708 /* Attendee.swift in Sources */,
 				79D60B122AE0533D00F8C8ED /* RecordMeetingView.swift in Sources */,
+				79F1CC822AF138E70075D6D2 /* SimpleError.swift in Sources */,
 				79D6B2F82ADD18FF0018F4F8 /* Task+Sleep.swift in Sources */,
 				79D6B2FA2ADD19050018F4F8 /* Standup.swift in Sources */,
 				79489E402AE048780040C708 /* TrailingIconLabelStyle.swift in Sources */,
