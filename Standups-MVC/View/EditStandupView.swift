@@ -92,6 +92,7 @@ struct EditStandupView: View {
   }}
   
   var save: () -> Void {{
+    //TODO: if there are no attendees, pointfreeco/SyncUps autocreates an empty attendee. Idk yet what Apple does.
     onSave?()
     dismiss()
   }}

@@ -53,6 +53,8 @@
 		79D835D82AE7DA2200B111EA /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D835D62AE7DA2200B111EA /* Reference.swift */; };
 		79DB91B22AF2763A004E6AD0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DB91B12AF2763A004E6AD0 /* Date.swift */; };
 		79DB91B32AF2763A004E6AD0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DB91B12AF2763A004E6AD0 /* Date.swift */; };
+		79DB91B82AF27B9A004E6AD0 /* MeetingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DB91B72AF27B9A004E6AD0 /* MeetingDetailView.swift */; };
+		79DB91B92AF27B9A004E6AD0 /* MeetingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DB91B72AF27B9A004E6AD0 /* MeetingDetailView.swift */; };
 		79F1CC782AE7E4E10075D6D2 /* Standup+DeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC772AE7E4E10075D6D2 /* Standup+DeepCopy.swift */; };
 		79F1CC7A2AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC792AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift */; };
 		79F1CC7B2AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC792AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift */; };
@@ -114,6 +116,7 @@
 		79D6B2F52ADD18D10018F4F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		79D835D62AE7DA2200B111EA /* Reference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
 		79DB91B12AF2763A004E6AD0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		79DB91B72AF27B9A004E6AD0 /* MeetingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingDetailView.swift; sourceTree = "<group>"; };
 		79F1CC772AE7E4E10075D6D2 /* Standup+DeepCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Standup+DeepCopy.swift"; sourceTree = "<group>"; };
 		79F1CC792AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Attendee+DeepCopy.swift"; sourceTree = "<group>"; };
 		79F1CC7D2AF137280075D6D2 /* Alert+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Item.swift"; sourceTree = "<group>"; };
@@ -253,6 +256,7 @@
 				7940E1D32AD9607A0036D710 /* EditStandupView.swift */,
 				79489E132AE0097D0040C708 /* StandupDetailView.swift */,
 				79D60B102AE0533D00F8C8ED /* RecordMeetingView.swift */,
+				79DB91B72AF27B9A004E6AD0 /* MeetingDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -478,6 +482,7 @@
 				796874032ADD5D6C0066F95E /* Playground.swift in Sources */,
 				7940E1A92AD94B8F0036D710 /* Standups_MVCApp.swift in Sources */,
 				79F1CC7E2AF137280075D6D2 /* Alert+Item.swift in Sources */,
+				79DB91B82AF27B9A004E6AD0 /* MeetingDetailView.swift in Sources */,
 				79F1CC7A2AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift in Sources */,
 				791E4ACD2AE13AEF006DFE88 /* EnvironmentValues+Key.swift in Sources */,
 				7940E1C62AD9539F0036D710 /* Task+Sleep.swift in Sources */,
@@ -525,6 +530,7 @@
 				796874042ADD5D700066F95E /* Playground.swift in Sources */,
 				79D6B2F72ADD18FF0018F4F8 /* View+SyncPreference.swift in Sources */,
 				79F1CC7F2AF137280075D6D2 /* Alert+Item.swift in Sources */,
+				79DB91B92AF27B9A004E6AD0 /* MeetingDetailView.swift in Sources */,
 				791E4ACE2AE13AEF006DFE88 /* EnvironmentValues+Key.swift in Sources */,
 				79D6B2F62ADD18FE0018F4F8 /* TestUtils.swift in Sources */,
 				79F1CC7B2AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift in Sources */,

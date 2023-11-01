@@ -34,6 +34,24 @@ struct StandupDetailView: View {
         } header: {
           Text("Standup Info")
         }
+        
+        if !standup.meetings.isEmpty {
+          Section {
+            ForEach(standup.meetings) { meeting in
+              NavigationLink {
+                MeetingDetailView(meeting: meeting)
+              } label: {
+                Text(meeting.date, style: .date)
+              }
+            }
+            .onDelete { indexSet in
+              indexSet.map { standup.meetings[$0] }.forEach(modelContext.delete)
+            }
+          } header: {
+            Text("Past Meeetings")
+          }
+        }
+        
         Section {
           ForEach(standup.attendees) { attendee in
             Label(attendee.name, systemImage: "person")

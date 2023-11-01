@@ -9,7 +9,7 @@ final class Standup {
   var durationInSeconds: Int64 = 60*5
   @Relationship
   var attendees: [Attendee] = []
-  @Relationship
+  @Relationship(inverse: \Meeting.standup)
   var meetings: [Meeting] = []
   var theme: Theme = Theme.bubblegum
   init(title: String = "", duration: Duration = .seconds(60*5), attendees: [Attendee] = [], meetings: [Meeting] = [], theme: Theme = .bubblegum) {
