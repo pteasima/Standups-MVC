@@ -6,11 +6,13 @@ import Speech
 struct RecordMeetingView: View {
   @Environment(\.dismiss) private var dismiss
   @Environment(SpeechRecognizer.self) private var speechRecognizer
+  @Environment(Date.self) private var now
   var standup: Standup
   @State var secondsElapsed: Int = 0
   @State var speakerIndex: Int = 0
   @State @Reference var transcript: String = ""
   @State var transcriptionError: Error?
+  @State private var startDate: Date!
   var body: some View {
     VStack {
       header
@@ -44,7 +46,7 @@ struct RecordMeetingView: View {
       }
       .customSensoryFeedback(.init(soundFilename: "ding.wav"), trigger: speakerIndex)
       .task {
-        
+        startDate = now()
         let authorization =
           await speechRecognizer.authorizationStatus() == .notDetermined
           ? speechRecognizer.requestAuthorization()
@@ -53,34 +55,52 @@ struct RecordMeetingView: View {
         await withTaskGroup(of: Void.self) { group in
           if authorization == .authorized {
             group.addTask {
-              do {
-                let speechTask = await speechRecognizer.startTask(SFSpeechAudioBufferRecognitionRequest())
-                for try await result in speechTask {
-                  transcript = result.bestTranscription.formattedString
-                }
-              } catch {
-                if !transcript.isEmpty {
-                  transcript += " ❌"
-                }
-                transcriptionError = error
-              }
+              await startTranscription()
             }
           }
           group.addTask {
-            for await _ in AsyncPublisher(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) {
-              secondsElapsed += 1
-              if secondsElapsed.isMultiple(of: Int(standup.durationPerAttendee.components.seconds)) {
-                let nextSpeakerIndex = speakerIndex + 1
-                if standup.attendees.indices.contains(nextSpeakerIndex) {
-                  speakerIndex = nextSpeakerIndex
-                } else {
-                  //              finish()
-                }
-              }
-            }
+            await startTimer()
           }
         }
       }
+  }
+  
+  private func startTranscription() async {
+    do {
+      let speechTask = await speechRecognizer.startTask(SFSpeechAudioBufferRecognitionRequest())
+      for try await result in speechTask {
+        transcript = result.bestTranscription.formattedString
+      }
+    } catch {
+      if !transcript.isEmpty {
+        transcript += " ❌"
+      }
+      transcriptionError = error
+    }
+  }
+  
+  private var isLastSpeaker: Bool {
+    !standup.attendees.indices.contains(speakerIndex + 1)
+  }
+  
+  private func startTimer() async {
+    for await _ in AsyncPublisher(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) {
+      secondsElapsed += 1
+      if secondsElapsed.isMultiple(of: Int(standup.durationPerAttendee.components.seconds)) {
+        if isLastSpeaker {
+          finish()
+        } else {
+          speakerIndex += 1
+        }
+      }
+    }
+  }
+  
+  private func finish() {
+    //I generally like online experiences, so I would have created the meeting eagerly. But rn this matches pointfreeco/SyncUps, only it uses the original start date, instead of the save date.
+    let meeting = Meeting(date: startDate, transcript: transcript)
+    standup.meetings.append(meeting)
+    dismiss()
   }
   
   @ViewBuilder
@@ -147,14 +167,19 @@ struct RecordMeetingView: View {
       Button {
         next()
       } label: {
-        Image(systemName: "forward.fill")
+        Image(systemName: isLastSpeaker ? "flag.checkered" : "forward.fill")
       }
     }
   }
   
   var next: () -> Void {{
-    speakerIndex += 1
-    //TODO: advance time
+    let newSpeakerIndex = speakerIndex + 1
+    guard standup.attendees.indices.contains(newSpeakerIndex) else {
+      finish()
+      return
+    }
+    speakerIndex = newSpeakerIndex
+    secondsElapsed = Int(standup.durationPerAttendee.components.seconds) * speakerIndex
   }}
   
   private var progress: Double {

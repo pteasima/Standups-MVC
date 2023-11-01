@@ -51,6 +51,8 @@
 		79D6B2FD2ADD19110018F4F8 /* Standups_MVCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940E1A82AD94B8F0036D710 /* Standups_MVCApp.swift */; };
 		79D835D72AE7DA2200B111EA /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D835D62AE7DA2200B111EA /* Reference.swift */; };
 		79D835D82AE7DA2200B111EA /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D835D62AE7DA2200B111EA /* Reference.swift */; };
+		79DB91B22AF2763A004E6AD0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DB91B12AF2763A004E6AD0 /* Date.swift */; };
+		79DB91B32AF2763A004E6AD0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DB91B12AF2763A004E6AD0 /* Date.swift */; };
 		79F1CC782AE7E4E10075D6D2 /* Standup+DeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC772AE7E4E10075D6D2 /* Standup+DeepCopy.swift */; };
 		79F1CC7A2AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC792AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift */; };
 		79F1CC7B2AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC792AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift */; };
@@ -59,6 +61,8 @@
 		79F1CC7F2AF137280075D6D2 /* Alert+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC7D2AF137280075D6D2 /* Alert+Item.swift */; };
 		79F1CC812AF138E70075D6D2 /* SimpleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC802AF138E70075D6D2 /* SimpleError.swift */; };
 		79F1CC822AF138E70075D6D2 /* SimpleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC802AF138E70075D6D2 /* SimpleError.swift */; };
+		79F1CC842AF13CF90075D6D2 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC832AF13CF90075D6D2 /* Meeting.swift */; };
+		79F1CC852AF13CF90075D6D2 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1CC832AF13CF90075D6D2 /* Meeting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,10 +113,12 @@
 		79D6B2E72ADD189E0018F4F8 /* Standups-MVC-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Standups-MVC-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79D6B2F52ADD18D10018F4F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		79D835D62AE7DA2200B111EA /* Reference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
+		79DB91B12AF2763A004E6AD0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		79F1CC772AE7E4E10075D6D2 /* Standup+DeepCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Standup+DeepCopy.swift"; sourceTree = "<group>"; };
 		79F1CC792AE7E4EF0075D6D2 /* Attendee+DeepCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Attendee+DeepCopy.swift"; sourceTree = "<group>"; };
 		79F1CC7D2AF137280075D6D2 /* Alert+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Item.swift"; sourceTree = "<group>"; };
 		79F1CC802AF138E70075D6D2 /* SimpleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleError.swift; sourceTree = "<group>"; };
+		79F1CC832AF13CF90075D6D2 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +239,7 @@
 				7940E1CD2AD95DA80036D710 /* Standup.swift */,
 				79489E1A2AE036D00040C708 /* Attendee.swift */,
 				79489E1D2AE042C00040C708 /* Theme.swift */,
+				79F1CC832AF13CF90075D6D2 /* Meeting.swift */,
 				7940E1D02AD95ED90036D710 /* SampleData */,
 				79F1CC762AE7E4CA0075D6D2 /* CopyingBoilerplate */,
 			);
@@ -255,6 +262,7 @@
 			children = (
 				791E4AC92AE1325D006DFE88 /* SpeechRecognizer.swift */,
 				791E4AD22AE15D11006DFE88 /* SensoryFeedbackPlayer.swift */,
+				79DB91B12AF2763A004E6AD0 /* Date.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -480,9 +488,11 @@
 				79F1CC812AF138E70075D6D2 /* SimpleError.swift in Sources */,
 				7940E1D72ADC115B0036D710 /* TestUtils.swift in Sources */,
 				7940E1CE2AD95DA80036D710 /* Standup.swift in Sources */,
+				79F1CC842AF13CF90075D6D2 /* Meeting.swift in Sources */,
 				79489E3F2AE048780040C708 /* TrailingIconLabelStyle.swift in Sources */,
 				79489E142AE0097D0040C708 /* StandupDetailView.swift in Sources */,
 				79489E1E2AE042C00040C708 /* Theme.swift in Sources */,
+				79DB91B22AF2763A004E6AD0 /* Date.swift in Sources */,
 				79F1CC782AE7E4E10075D6D2 /* Standup+DeepCopy.swift in Sources */,
 				79D835D72AE7DA2200B111EA /* Reference.swift in Sources */,
 				79D6B2E12ADC846D0018F4F8 /* View+SyncPreference.swift in Sources */,
@@ -525,9 +535,11 @@
 				79F1CC822AF138E70075D6D2 /* SimpleError.swift in Sources */,
 				79D6B2F82ADD18FF0018F4F8 /* Task+Sleep.swift in Sources */,
 				79D6B2FA2ADD19050018F4F8 /* Standup.swift in Sources */,
+				79F1CC852AF13CF90075D6D2 /* Meeting.swift in Sources */,
 				79489E402AE048780040C708 /* TrailingIconLabelStyle.swift in Sources */,
 				79489E152AE0097D0040C708 /* StandupDetailView.swift in Sources */,
 				79489E1F2AE042C00040C708 /* Theme.swift in Sources */,
+				79DB91B32AF2763A004E6AD0 /* Date.swift in Sources */,
 				79F1CC7C2AE7E4F40075D6D2 /* Standup+DeepCopy.swift in Sources */,
 				79D835D82AE7DA2200B111EA /* Reference.swift in Sources */,
 				79D6B2F92ADD19050018F4F8 /* SampleData.swift in Sources */,

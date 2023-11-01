@@ -112,3 +112,16 @@ private actor Speech {
     }
   }
 }
+
+extension SpeechRecognizer {
+  static var failing: Self {
+     .init(authorizationStatus: { .authorized }, requestAuthorization: {
+      .authorized
+    }, startTask: { request in
+      AsyncThrowingStream {
+        try await Task.sleep(until: .now + .seconds(2))
+        throw SimpleError()
+      }
+    })
+  }
+}

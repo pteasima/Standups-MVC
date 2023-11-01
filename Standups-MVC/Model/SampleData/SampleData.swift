@@ -14,3 +14,9 @@ extension Attendee {
     .init(name: "John Doe")
   }
 }
+
+extension Meeting {
+  static var sample: Meeting {
+    .init(date: .distantPast, transcript: "Sample transcript")
+  }
+}
