@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 struct TestPreference: Equatable, PreferenceKey {
-  // !!! if a non-hashable value changes, it might not update the preference. Idk how much of a problem that is in practice.
+  // !!! if a non-hashable value changes, it might not update the preference. Idk how much of a problem that is in practice. Worst-case, the burden will be put on the user to only include Hashable preferences.
   static func == (lhs: TestPreference, rhs: TestPreference) -> Bool {
     if Set(lhs.values.keys) != Set(rhs.values.keys) {
       return false
@@ -21,7 +21,6 @@ struct TestPreference: Equatable, PreferenceKey {
   var values: [AnyHashable: Any] = [:]
   static var defaultValue: Self { .init() }
   static func reduce(value: inout Self, nextValue: () -> Self) {
-    //TODO: maybe this is still buggy?
     value.values = value.values.merging(nextValue().values) { $1 }
   }
   
@@ -78,13 +77,13 @@ struct Invocation<Base> {
   var action: KeyPath<Base, () -> Void>
 }
 
-struct ErasedWithPreference<Label: View>: View {
+struct ErasedWithPreference<Content: View>: View {
   @Environment(TestableID.self) var testableID
-  var label: Label
+  var content: Content
   var id: AnyHashable
   var value: Any
   var body: some View {
-    label
+    content
       .testableID(nil)
       .preference(key: TestPreference.self, value: .init(values: [testableID ?? id : value]))
   }
@@ -93,14 +92,14 @@ struct ErasedWithPreference<Label: View>: View {
 extension Button {
   init<RawLabel: View>(action: WithPath<() -> Void>, @ViewBuilder label: () -> RawLabel) where Label ==  ErasedWithPreference<RawLabel> {
     self.init(action: action.wrappedValue) {
-      ErasedWithPreference(label: label(), id: action.id, value: action.wrappedValue)
+      ErasedWithPreference(content: label(), id: action.id, value: action.wrappedValue)
     }
   }
 }
 //extension TextField {
 //  init<RawLabel: View>(text: WithPath<Binding<String>>, @ViewBuilder label: () -> RawLabel) where Label ==  ErasedWithPreference<RawLabel> {
 //    self.init(text: text.wrappedValue) {
-//      //BROKEN: This wont propage out
+//      //BROKEN: This wont propagate out
 //      ErasedWithPreference(label: label(), id: text.id, value: text.wrappedValue)
 //    }
 //  }
