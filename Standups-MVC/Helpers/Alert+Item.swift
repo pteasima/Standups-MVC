@@ -4,7 +4,7 @@ import SwiftUI
 // Until someone can explain why I would want that, Im assuming this was made by a rogue SwiftUI engineer, and am instead mirroring the other modal presentation APIs like .sheet
 
 extension View {
-  func alert<Item, Actions: View, Message: View>(_ titleKey: LocalizedStringKey, item: Binding<Item?>, actions: (Item) -> Actions, message: (Item) -> Message) -> some View {
+  func alert<Item, Actions: View, Message: View>(_ titleKey: LocalizedStringKey, item: Binding<Item?>, @ViewBuilder actions: (Item) -> Actions, @ViewBuilder message: (Item) -> Message) -> some View {
     alert(
       titleKey,
       isPresented: Binding {

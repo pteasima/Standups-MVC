@@ -8,11 +8,12 @@ struct RecordMeetingView: View {
   @Environment(SpeechRecognizer.self) private var speechRecognizer
   @Environment(Date.self) private var now
   var standup: Standup
-  @State var secondsElapsed: Int = 0
-  @State var speakerIndex: Int = 0
+  @State private var secondsElapsed: Int = 0
+  @State private var speakerIndex: Int = 0
   @State @Reference var transcript: String = ""
-  @State var transcriptionError: Error?
-  @State private var startDate: Date!
+  @State private var transcriptionError: Error?
+  @State private var isEndMeetingConfirmationPresented: Bool = false
+  @State private var startDate: Date?
   var body: some View {
     VStack {
       header
@@ -32,7 +33,7 @@ struct RecordMeetingView: View {
       .toolbar {
         ToolbarItem(placement: .cancellationAction) {
           Button {
-            dismiss()
+            isEndMeetingConfirmationPresented = true
           } label: {
             Text("End Meeting")
           }
@@ -40,18 +41,28 @@ struct RecordMeetingView: View {
       }
       .navigationBarBackButtonHidden(true)
       .alert("Transcription Error", item: $transcriptionError) { _ in
-        Text("OK")
-      } message: {
-        Text($0.localizedDescription)
+        discardButton
+        resumeButton
+      } message: { _ in
+        Text("Transcription failed, do you want to discard the meeting?")
+      }
+      .confirmationDialog("Do you want to discard the meeting?", isPresented: $isEndMeetingConfirmationPresented) {
+        Button {
+          finish()
+        } label: {
+          Text("Save and End")
+        }
+        discardButton
+        resumeButton
       }
       .customSensoryFeedback(.init(soundFilename: "ding.wav"), trigger: speakerIndex)
       .task {
-        startDate = now()
         let authorization =
           await speechRecognizer.authorizationStatus() == .notDetermined
           ? speechRecognizer.requestAuthorization()
           : speechRecognizer.authorizationStatus()
 
+        startDate = now()
         await withTaskGroup(of: Void.self) { group in
           if authorization == .authorized {
             group.addTask {
@@ -63,6 +74,22 @@ struct RecordMeetingView: View {
           }
         }
       }
+  }
+  
+  @ViewBuilder private var resumeButton: some View {
+    Button(role: .cancel) {
+    } label: {
+      Text("Resume")
+    }
+  }
+  
+  @ViewBuilder
+  private var discardButton: some View {
+    Button(role: .destructive) {
+      dismiss()
+    } label: {
+      Text("Discard")
+    }
   }
   
   private func startTranscription() async {
@@ -97,8 +124,8 @@ struct RecordMeetingView: View {
   }
   
   private func finish() {
-    //I generally like online experiences, so I would have created the meeting eagerly. But rn this matches pointfreeco/SyncUps, only it uses the original start date, instead of the save date.
-    let meeting = Meeting(date: startDate, transcript: transcript)
+    // I generally like online experiences, so I would have created the meeting eagerly. But rn this matches pointfreeco/SyncUps, only it uses the original start date, instead of the save date.
+    let meeting = Meeting(date: startDate ?? now(), transcript: transcript)
     standup.meetings.append(meeting)
     dismiss()
   }
