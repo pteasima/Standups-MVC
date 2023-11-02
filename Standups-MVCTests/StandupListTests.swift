@@ -11,6 +11,7 @@ import SwiftData
 
 final class StandupListTests: XCTestCase {
     
+  
   @MainActor
   func testAdd() async throws {
     let modelContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
@@ -18,21 +19,69 @@ final class StandupListTests: XCTestCase {
     try await StandupsListView()
       .modelContainer(modelContainer)
       .testTask { $testPreference in
-        try! await Task.sleep()
-        try! await Task.sleep()
+        var standups: [Standup] {
+          testPreference[\StandupsListView.standups]
+        }
+        
+        try await Task.sleep()
+        try await Task.sleep()
 
-        XCTAssertEqual(testPreference[\StandupsListView.standups].map(\.title), ["Daily Standup"])
+        XCTAssertEqual(standups.map(\.title), ["Daily Standup"])
+        
         
         testPreference[\StandupsListView.addStandup]()
-        try! await Task.sleep(until: .now + .seconds(1), clock: .suspending)
+        try await Task.sleep(until: .now + .seconds(1), clock: .suspending)
         testPreference[\EditStandupView.$standup.title].wrappedValue = "hello"
-        try! await Task.sleep(until: .now + .seconds(1), clock: .suspending)
+        try await Task.sleep(until: .now + .seconds(0.5), clock: .suspending)
+        testPreference[\EditStandupView.addAttendee]()
+        try await Task.sleep(until: .now + .seconds(0.5), clock: .suspending)
+        let id = testPreference[\EditStandupView.$standup].attendees.first!.id
+        testPreference[\EditStandupView.$standup.attendees[unsafeID: id].name].wrappedValue = "Im the first attendee"
+        try await Task.sleep(until: .now + .seconds(0.5), clock: .suspending)
         testPreference[\EditStandupView.save]()
-        try! await Task.sleep(until: .now + .seconds(1), clock: .suspending)
-        let standups = testPreference[\StandupsListView.standups]
+        try await Task.sleep(until: .now + .seconds(0.5), clock: .suspending)
         XCTAssertEqual(standups.map(\.title).sorted(), ["Daily Standup", "hello"].sorted())
+        XCTAssertEqual(standups.first(where: { $0.title == "hello" })!.attendees.map(\.name), ["Im the first attendee"])
       }
   }
+  
+  @MainActor
+  func testAddWithValidatedAttendees() async throws {
+    let modelContainer = try! ModelContainer(for: Standup.self, configurations: .init(isStoredInMemoryOnly: true))
+    modelContainer.mainContext.insert(Standup.sample)
+    try await StandupsListView()
+      .modelContainer(modelContainer)
+      .testTask { $testPreference in
+        var standups: [Standup] {
+          testPreference[\StandupsListView.standups]
+        }
+        
+        try await Task.sleep()
+        try await Task.sleep()
+
+        XCTAssertEqual(standups.map(\.title), ["Daily Standup"])
+        
+        
+        testPreference[\StandupsListView.addStandup]()
+        try await Task.sleep(until: .now + .seconds(1), clock: .suspending)
+        testPreference[\EditStandupView.$standup.title].wrappedValue = "hello"
+        try await Task.sleep(until: .now + .seconds(0.5), clock: .suspending)
+        testPreference[\EditStandupView.addAttendee]()
+        try await Task.sleep()
+        testPreference[\EditStandupView.addAttendee]()
+        try await Task.sleep(until: .now + .seconds(0.5), clock: .suspending)
+        let id = testPreference[\EditStandupView.$standup].attendees.first!.id
+        testPreference[\EditStandupView.$standup.attendees[unsafeID: id].name].wrappedValue = "    "
+        try await Task.sleep(until: .now + .seconds(0.5), clock: .suspending)
+        testPreference[\EditStandupView.save]()
+        try await Task.sleep(until: .now + .seconds(0.5), clock: .suspending)
+        XCTAssertEqual(standups.map(\.title).sorted(), ["Daily Standup", "hello"].sorted())
+        //both attendees didn't pass validation but a default one with empty name was added
+        XCTAssertEqual(standups.first(where: { $0.title == "hello" })!.attendees.map(\.name).sorted(), [""].sorted())
+        
+      }
+  }
+  
   
   
   @MainActor
@@ -44,57 +93,20 @@ final class StandupListTests: XCTestCase {
           .modelContainer(modelContainer)
           .testTask { $testPreference in
             // test
-            try! await Task.sleep()
-            try! await Task.sleep()
+            try await Task.sleep()
+            try await Task.sleep()
             
             XCTAssertEqual([Standup](), testPreference[\StandupsListView.$path].wrappedValue)
             testPreference[\StandupsListView.$path].wrappedValue = [testPreference[\StandupsListView.standups][0]]
-            try! await Task.sleep(until: .now + .seconds(1))
+            try await Task.sleep(until: .now + .seconds(1))
             testPreference[\StandupDetailView.edit]()
-            try! await Task.sleep(until: .now + .seconds(1))
+            try await Task.sleep(until: .now + .seconds(1))
             testPreference[\EditStandupView.$standup.title].wrappedValue = "hey"
-            try! await Task.sleep(until: .now + .seconds(1))
+            try await Task.sleep(until: .now + .seconds(1))
             XCTAssertEqual(testPreference[\StandupsListView.standups][0].title, "hey")
           }
          
   }
 }
 
-extension View {
-  @MainActor
-  func testTask(_ task: @MainActor @escaping (Binding<TestPreference>) async throws -> Void) async throws {
-    let testedView = modifier(
-      TestTaskViewModifier(task: task)
-    )
-    let host = UIHostingController(rootView: testedView)
-    testWindow.rootViewController = host
-    testWindow.makeKeyAndVisible()
-    
-    try await Task.sleep(until: .now + .seconds(4)) //TODO: wait for test task to finish
-  }
-}
-
-
-struct TestTaskViewModifier: ViewModifier {
-  @State private var testPreference: TestPreference = .init()
-  var task: @MainActor (Binding<TestPreference>) async throws -> Void
-  func body(content: Content) -> some View {
-    content
-      .onPreferenceChange(TestPreference.self, perform: { value in
-        testPreference = value
-      })
-      .task {
-        do {
-          try await task($testPreference)
-        } catch {
-          XCTFail(error.localizedDescription)
-        }
-      }
-  }
-}
-
-// this needs to be the real app key window on some platforms, custom one has problems
-var testWindow: UIWindow {
-  (UIApplication.shared.connectedScenes.first as! UIWindowScene).windows.first!
-}
-
+// pointfreeco/SyncUps have other tests. Some of these don't make sense for SwiftData (e.g. decoding), but others might be useful (e.g. test save).

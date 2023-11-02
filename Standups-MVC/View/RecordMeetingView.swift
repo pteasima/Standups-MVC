@@ -273,3 +273,17 @@ struct MeetingProgressViewStyle: ProgressViewStyle {
       .modelContainer(modelContainer)
   }
 }
+
+extension Array<Attendee> {
+  subscript(unsafeID id: PersistentIdentifier) -> Element {
+    get { first { $0.id == id }! }
+    set { 
+      assert(newValue.id == id)
+      guard let firstIndex = firstIndex(where: { $0.id == id }) else {
+        assertionFailure()
+        return
+      }
+      self[firstIndex] = newValue
+    }
+  }
+}

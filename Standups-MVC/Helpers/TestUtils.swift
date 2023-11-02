@@ -24,9 +24,7 @@ struct TestPreference: Equatable, PreferenceKey {
     value.values = value.values.merging(nextValue().values) { $1 }
   }
   
-  subscript<Base, Subject>(id: KeyPath<Base, Subject>) -> Subject {
-    values[id] as! Subject
-  }
+  subscript<Base, Subject>(id: KeyPath<Base, Subject>) -> Subject { values[id] as! Subject }
 }
 
 struct StatePreference: Equatable, PreferenceKey {
@@ -70,11 +68,6 @@ struct StateBindingPreference: Equatable, PreferenceKey {
     }
     
     
-}
-
-struct Invocation<Base> {
-  var base: Base
-  var action: KeyPath<Base, () -> Void>
 }
 
 struct ErasedWithPreference<Content: View>: View {
@@ -133,6 +126,8 @@ struct Testable<Base> {
   subscript<Subject>(dynamicMember keyPath: KeyPath<Base, Subject>) -> WithPath<Subject> {
     .init(id: keyPath, wrappedValue: base[keyPath: keyPath])
   }
+  
+  
 }
 
 

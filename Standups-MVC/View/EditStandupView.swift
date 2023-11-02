@@ -53,12 +53,12 @@ struct EditStandupView: View {
         Section {
           //TODO: this binding strugless with the changing order (once I ended up with two rows for the same attendee). Should be fixed once order is stable.
           ForEach($standup.attendees) { $attendee in
-            TextField("Attendee Name", text: $attendee.name)
-              .focused($focusedField, equals: .attendee(attendee.id))
+            TestableTextField(text: WithPath(id: \Self.$standup.attendees[unsafeID: attendee.id].name, wrappedValue: $attendee.name)) {
+              Text("Attendee Name")
+            }
+            .focused($focusedField, equals: .attendee(attendee.id))
           }
-          Button {
-            addAttendee()
-          } label: {
+          Button(action: testable.addAttendee) {
             Text("Add Attendee")
           }
         } header: {
@@ -82,17 +82,26 @@ struct EditStandupView: View {
           }
         }
       }
+      .transformPreference(TestPreference.self) {
+        $0.values[\Self.$standup] = $standup
+      }
     }
   }
   
   var addAttendee: () -> Void {{
-    let newAttendee = Attendee()
-    standup.attendees.append(newAttendee)
-    focusedField = .attendee(newAttendee.id)
+    withAnimation {
+      let newAttendee = Attendee()
+      standup.attendees.append(newAttendee)
+      focusedField = .attendee(newAttendee.id)
+    }
   }}
   
   var save: () -> Void {{
-    //TODO: if there are no attendees, pointfreeco/SyncUps autocreates an empty attendee. Idk yet what Apple does.
+    // apple/Scrumdinger doesn't validate attendees. We filter out unnamed ones and create a default unnamed one if there are no others, to match behavior of pointfreeco/SyncUps.
+    standup.attendees = standup.attendees.filter { !$0.name.trimmingCharacters(in: .whitespaces).isEmpty }
+    if standup.attendees.isEmpty {
+      standup.attendees.append(.init(name: ""))
+    }
     onSave?()
     dismiss()
   }}
