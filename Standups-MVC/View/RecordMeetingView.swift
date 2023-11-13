@@ -7,6 +7,7 @@ struct RecordMeetingView: View {
   @Environment(\.dismiss) private var dismiss
   @Environment(SpeechRecognizer.self) private var speechRecognizer
   @Environment(Date.self) private var now
+  @Environment(\.modelContext) private var modelContext
   var standup: Standup
   @State private var secondsElapsed: Int = 0
   @State private var speakerIndex: Int = 0
@@ -46,7 +47,7 @@ struct RecordMeetingView: View {
       } message: { _ in
         Text("Transcription failed, do you want to discard the meeting?")
       }
-      .confirmationDialog("Do you want to discard the meeting?", isPresented: $isEndMeetingConfirmationPresented) {
+      .confirmationDialog("Do you want to save the meeting?", isPresented: $isEndMeetingConfirmationPresented) {
         Button {
           finish()
         } label: {
@@ -74,6 +75,7 @@ struct RecordMeetingView: View {
           }
         }
       }
+      .preference(key: TestPreference.self, value: .init(values: [\Self.self : self]))
   }
   
   @ViewBuilder private var resumeButton: some View {
@@ -202,7 +204,7 @@ struct RecordMeetingView: View {
   var next: () -> Void {{
     let newSpeakerIndex = speakerIndex + 1
     guard standup.attendees.indices.contains(newSpeakerIndex) else {
-      finish()
+      finish() // not sure if we still want a confirmation dialog if the user tapped the finish button. Rn we just dismiss the screen, same as if the time ran out.
       return
     }
     speakerIndex = newSpeakerIndex

@@ -23,7 +23,6 @@ struct TestPreference: Equatable, PreferenceKey {
   static func reduce(value: inout Self, nextValue: () -> Self) {
     value.values = value.values.merging(nextValue().values) { $1 }
   }
-  
   subscript<Base, Subject>(id: KeyPath<Base, Subject>) -> Subject { values[id] as! Subject }
 }
 

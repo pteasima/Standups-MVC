@@ -5,6 +5,7 @@ import SwiftData
 final class Meeting {
   var date: Date
   var transcript: String
+  @Relationship(inverse: \Standup.meetings)
   var standup: Standup?
   
   init(date: Date = .now, transcript: String = "", standup: Standup? = nil) {

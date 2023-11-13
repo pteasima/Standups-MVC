@@ -44,3 +44,4 @@ var testWindow: UIWindow {
   (UIApplication.shared.connectedScenes.first as! UIWindowScene).windows.first!
 }
 
+extension Binding: @unchecked Sendable {} // Make xcode shut up 😅 I should really understand Sendable better

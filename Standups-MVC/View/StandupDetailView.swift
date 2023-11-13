@@ -7,12 +7,10 @@ struct StandupDetailView: View {
   @Bindable var standup: Standup
   @State var isEditing: Bool = false
   var body: some View {
-    withChildPreference(key: TextFieldBinding.self) { textFieldPipe in
+    withChildPreference(key: TestPreference.self) { testPreferencePipe in
       List {
         Section {
-          NavigationLink {
-            RecordMeetingView(standup: standup)
-          } label: {
+          NavigationLink(value: Destination.record(standup)) {
             Label("Start Meeting", systemImage: "timer")
               .bold()
           }
@@ -73,19 +71,16 @@ struct StandupDetailView: View {
       .navigationTitle(standup.title)
       .toolbar {
         ToolbarItem {
-          Button {
-            edit()
-          } label: {
+          Button(action: testable.edit) {
             Text("Edit")
           }
         }
       }
       .sheet(isPresented: $isEditing) {
         EditStandupView(standup: standup)
-          .syncPreference(using: textFieldPipe)
+          .syncPreference(using: testPreferencePipe)
       }
     }
-    .preference(key: TestPreference.self, value: .init(values: [ \Self.edit : { isEditing = true } ]))
   }
   
   var edit: () -> Void {{

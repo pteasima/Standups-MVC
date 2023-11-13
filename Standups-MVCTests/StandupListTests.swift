@@ -96,8 +96,8 @@ final class StandupListTests: XCTestCase {
             try await Task.sleep()
             try await Task.sleep()
             
-            XCTAssertEqual([Standup](), testPreference[\StandupsListView.$path].wrappedValue)
-            testPreference[\StandupsListView.$path].wrappedValue = [testPreference[\StandupsListView.standups][0]]
+            XCTAssertEqual([Destination](), testPreference[\StandupsListView.$path].wrappedValue)
+            testPreference[\StandupsListView.$path].wrappedValue = [.detail(testPreference[\StandupsListView.standups][0])]
             try await Task.sleep(until: .now + .seconds(1))
             testPreference[\StandupDetailView.edit]()
             try await Task.sleep(until: .now + .seconds(1))
