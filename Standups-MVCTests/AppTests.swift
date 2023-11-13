@@ -36,7 +36,7 @@ final class AppTests: XCTestCase {
         try await Task.sleep(until: .now + .seconds(0.5))
         testPreference[\RecordMeetingView.self].next()
         try await Task.sleep(until: .now + .seconds(0.5))
-//        testPreference[\MeetingDetailView.self]
+        XCTAssertEqual(testPreference[\StandupDetailView.self].standup.meetings.first!.transcript, "Im the transcript.")
       }
   }
 }

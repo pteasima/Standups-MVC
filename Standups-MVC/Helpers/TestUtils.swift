@@ -146,3 +146,12 @@ extension View {
   }
 }
 
+
+extension View {
+  func withTestPreference<V: View>(for view: V) -> some View {
+    self
+      .transformPreference(TestPreference.self) {
+        $0.values[\V.self] = view
+      }
+  }
+}

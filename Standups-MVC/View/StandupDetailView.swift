@@ -81,6 +81,7 @@ struct StandupDetailView: View {
           .syncPreference(using: testPreferencePipe)
       }
     }
+    .withTestPreference(for: self)
   }
   
   var edit: () -> Void {{
